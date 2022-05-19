@@ -17,6 +17,7 @@ class RepoTableVIewCell_inCode: UITableViewCell {
         button.layer.cornerRadius = 13
         button.titleLabel?.text = ""
         button.clipsToBounds = true
+        button.isEnabled = false
         return button
     }()
     

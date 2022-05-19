@@ -24,6 +24,8 @@ class MainViewController: UIViewController  {
         super.viewDidLoad()
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
+        tableView.delegate = self
+        tableView.dataSource = self
         self.registerTableViewCells()
         self.tableView.showActivityIndicator()
         registerTableViewCells()
