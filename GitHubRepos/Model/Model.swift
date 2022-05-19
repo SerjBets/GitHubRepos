@@ -26,7 +26,8 @@ struct Repo: Codable {
     let id          : Int
     let name        : String
     let fullName    : String
-    var owner       : GitUser
+    let owner       : GitUser
+    let htmlUrl     : URL
     let description : String?
     let commitsUrl  : String
     let starsCount  : Int
@@ -36,6 +37,7 @@ struct Repo: Codable {
         case name
         case fullName    = "full_name"
         case owner
+        case htmlUrl     = "html_url"
         case description
         case commitsUrl  = "commits_url"
         case starsCount  = "stargazers_count"
@@ -54,8 +56,8 @@ struct GitUser: Codable {
     let userUrl     : URL
     let htmlUrl     : URL
     let reposUrl    : URL
-    var name        : String?
-    var email       : String?
+    let name        : String?
+    let email       : String?
 
     enum CodingKeys: String, CodingKey {
         case login

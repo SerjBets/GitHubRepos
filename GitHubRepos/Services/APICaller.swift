@@ -19,7 +19,7 @@ class APICaller {
         
         guard let url = URL(string: urlString) else { return }
         let _ = AF.request(url, method: .get, parameters: params).validate().response { response in
-//               print(response.request)
+               print(response.request)
 //               print(response.response)
 //               print(response.data)
 //               print(response.result)

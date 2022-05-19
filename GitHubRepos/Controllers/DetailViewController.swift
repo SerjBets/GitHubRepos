@@ -31,7 +31,30 @@ class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
     }
     
     @IBAction func shareRepoButton(_ sender: Any) {
-        
+        prepareForShare()
+    }
+    
+    private func prepareForShare() {
+        let nameToShare = String(describing: repoItem.name)
+        let urlToShare = repoItem.htmlUrl
+        let shareItems = [nameToShare, urlToShare] as [Any]
+        let activityVC = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
+
+        //Apps to exclude sharing to
+        activityVC.excludedActivityTypes = [
+            UIActivity.ActivityType.airDrop,
+            UIActivity.ActivityType.mail,
+            UIActivity.ActivityType.addToReadingList,
+            UIActivity.ActivityType.postToFacebook,
+            UIActivity.ActivityType.postToTwitter,
+            UIActivity.ActivityType.print
+        ]
+        self.present(activityVC, animated: true, completion: nil)
+        activityVC.completionWithItemsHandler = { (activityType, completed:Bool, returnedItems:[Any]?, error: Error?) in
+            if completed  {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
     }
     
     //MARK: === ViewController LifeCycle ===
