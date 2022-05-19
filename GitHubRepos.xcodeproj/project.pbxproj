@@ -15,6 +15,13 @@
 		1EF451D0283642FE0049A7F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EF451CE283642FE0049A7F7 /* LaunchScreen.storyboard */; };
 		1EF451E2283647530049A7F7 /* CommitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EF451E0283647530049A7F7 /* CommitTableViewCell.xib */; };
 		1EF451E3283647530049A7F7 /* RepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EF451E1283647530049A7F7 /* RepoTableViewCell.xib */; };
+		1EF451EB283648A70049A7F7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1EF451EA283648A70049A7F7 /* Alamofire */; };
+		1EF451EE283648C60049A7F7 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 1EF451ED283648C60049A7F7 /* SDWebImage */; };
+		1EF451F0283648C60049A7F7 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1EF451EF283648C60049A7F7 /* SDWebImageMapKit */; };
+		1EF451F3283648DD0049A7F7 /* DZNEmptyDataSet in Frameworks */ = {isa = PBXBuildFile; productRef = 1EF451F2283648DD0049A7F7 /* DZNEmptyDataSet */; };
+		1EF451F5283649690049A7F7 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451F4283649690049A7F7 /* APICaller.swift */; };
+		1EF451F7283649870049A7F7 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451F6283649870049A7F7 /* Errors.swift */; };
+		1EF451F9283649CE0049A7F7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451F8283649CE0049A7F7 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +39,9 @@
 		1EF451E5283647BC0049A7F7 /* SFProDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Bold.otf"; sourceTree = "<group>"; };
 		1EF451E6283647BC0049A7F7 /* SFProText-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Semibold.otf"; sourceTree = "<group>"; };
 		1EF451E7283647BC0049A7F7 /* SFProText-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Medium.otf"; sourceTree = "<group>"; };
+		1EF451F4283649690049A7F7 /* APICaller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APICaller.swift; path = GitHubRepos/Services/APICaller.swift; sourceTree = SOURCE_ROOT; };
+		1EF451F6283649870049A7F7 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		1EF451F8283649CE0049A7F7 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = GitHubRepos/Model/Model.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +49,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EF451F3283648DD0049A7F7 /* DZNEmptyDataSet in Frameworks */,
+				1EF451EE283648C60049A7F7 /* SDWebImage in Frameworks */,
+				1EF451F0283648C60049A7F7 /* SDWebImageMapKit in Frameworks */,
+				1EF451EB283648A70049A7F7 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,12 +78,12 @@
 		1EF451C2283642FB0049A7F7 /* GitHubRepos */ = {
 			isa = PBXGroup;
 			children = (
+				1EF451E8283648410049A7F7 /* Services */,
 				1EF451DD283643620049A7F7 /* Resources */,
 				1EF451DB283643540049A7F7 /* Storyboards */,
 				1EF451D9283643390049A7F7 /* Controllers */,
 				1EF451D8283643330049A7F7 /* Views */,
 				1EF451D72836432B0049A7F7 /* Model */,
-				1EF451C7283642FB0049A7F7 /* MainViewController.swift */,
 				1EF451D1283642FE0049A7F7 /* Info.plist */,
 			);
 			path = GitHubRepos;
@@ -78,6 +92,7 @@
 		1EF451D72836432B0049A7F7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1EF451F8283649CE0049A7F7 /* Model.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -93,6 +108,7 @@
 		1EF451D9283643390049A7F7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1EF451C7283642FB0049A7F7 /* MainViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -153,6 +169,15 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		1EF451E8283648410049A7F7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1EF451F4283649690049A7F7 /* APICaller.swift */,
+				1EF451F6283649870049A7F7 /* Errors.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -169,6 +194,12 @@
 			dependencies = (
 			);
 			name = GitHubRepos;
+			packageProductDependencies = (
+				1EF451EA283648A70049A7F7 /* Alamofire */,
+				1EF451ED283648C60049A7F7 /* SDWebImage */,
+				1EF451EF283648C60049A7F7 /* SDWebImageMapKit */,
+				1EF451F2283648DD0049A7F7 /* DZNEmptyDataSet */,
+			);
 			productName = GitHubRepos;
 			productReference = 1EF451C0283642FB0049A7F7 /* GitHubRepos.app */;
 			productType = "com.apple.product-type.application";
@@ -197,6 +228,11 @@
 				Base,
 			);
 			mainGroup = 1EF451B7283642FB0049A7F7;
+			packageReferences = (
+				1EF451E9283648A70049A7F7 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				1EF451EC283648C60049A7F7 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				1EF451F1283648DD0049A7F7 /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */,
+			);
 			productRefGroup = 1EF451C1283642FB0049A7F7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -227,8 +263,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EF451C8283642FB0049A7F7 /* MainViewController.swift in Sources */,
+				1EF451F7283649870049A7F7 /* Errors.swift in Sources */,
 				1EF451C4283642FB0049A7F7 /* AppDelegate.swift in Sources */,
+				1EF451F9283649CE0049A7F7 /* Model.swift in Sources */,
 				1EF451C6283642FB0049A7F7 /* SceneDelegate.swift in Sources */,
+				1EF451F5283649690049A7F7 /* APICaller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +487,56 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1EF451E9283648A70049A7F7 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.1;
+			};
+		};
+		1EF451EC283648C60049A7F7 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.5;
+			};
+		};
+		1EF451F1283648DD0049A7F7 /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dzenbot/DZNEmptyDataSet";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1EF451EA283648A70049A7F7 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1EF451E9283648A70049A7F7 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		1EF451ED283648C60049A7F7 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1EF451EC283648C60049A7F7 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		1EF451EF283648C60049A7F7 /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1EF451EC283648C60049A7F7 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
+		};
+		1EF451F2283648DD0049A7F7 /* DZNEmptyDataSet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1EF451F1283648DD0049A7F7 /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */;
+			productName = DZNEmptyDataSet;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1EF451B8283642FB0049A7F7 /* Project object */;
 }
