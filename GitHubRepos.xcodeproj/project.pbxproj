@@ -117,7 +117,6 @@
 			isa = PBXGroup;
 			children = (
 				1EF451C7283642FB0049A7F7 /* MainViewController.swift */,
-				1EF4520028364B270049A7F7 /* Extensions.swift */,
 				1EF451FE28364AE80049A7F7 /* DetailViewController.swift */,
 			);
 			path = Controllers;
@@ -186,6 +185,7 @@
 			children = (
 				1EF451F4283649690049A7F7 /* APICaller.swift */,
 				1EF451F6283649870049A7F7 /* Errors.swift */,
+				1EF4520028364B270049A7F7 /* Extensions.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";

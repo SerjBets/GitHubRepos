@@ -18,7 +18,6 @@ class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     var repoItem: Repo!
-    var usersList: GitUsers?
     var commitsList = [Commit]() {
         didSet {
             updateUI()
@@ -66,11 +65,6 @@ class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
         
     }
 
-}
-
-// === MARK: - UITableViewDelegate ===
-extension DetailViewController: UITableViewDelegate {
-    
 }
 
 // === MARK: - UITableViewDataSource ===
