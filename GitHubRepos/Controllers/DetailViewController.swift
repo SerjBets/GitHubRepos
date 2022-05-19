@@ -82,6 +82,10 @@ extension DetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CommitTableViewCell.identifier) as! CommitTableViewCell
         cell.configureCell(with: commitsList[indexPath.row], index: indexPath)
+        
+        if indexPath.row >= 3 {
+            return UITableViewCell()
+        }
         return cell
     }
     
