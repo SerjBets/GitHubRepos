@@ -22,6 +22,8 @@
 		1EF451F5283649690049A7F7 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451F4283649690049A7F7 /* APICaller.swift */; };
 		1EF451F7283649870049A7F7 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451F6283649870049A7F7 /* Errors.swift */; };
 		1EF451F9283649CE0049A7F7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451F8283649CE0049A7F7 /* Model.swift */; };
+		1EF451FC28364A630049A7F7 /* CommitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451FA28364A630049A7F7 /* CommitTableViewCell.swift */; };
+		1EF451FD28364A630049A7F7 /* RepoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451FB28364A630049A7F7 /* RepoTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		1EF451F4283649690049A7F7 /* APICaller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APICaller.swift; path = GitHubRepos/Services/APICaller.swift; sourceTree = SOURCE_ROOT; };
 		1EF451F6283649870049A7F7 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		1EF451F8283649CE0049A7F7 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = GitHubRepos/Model/Model.swift; sourceTree = SOURCE_ROOT; };
+		1EF451FA28364A630049A7F7 /* CommitTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommitTableViewCell.swift; path = GitHubRepos/Views/Cells/CommitTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		1EF451FB28364A630049A7F7 /* RepoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepoTableViewCell.swift; path = GitHubRepos/Views/Cells/RepoTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,12 +82,12 @@
 		1EF451C2283642FB0049A7F7 /* GitHubRepos */ = {
 			isa = PBXGroup;
 			children = (
+				1EF451D72836432B0049A7F7 /* Model */,
+				1EF451D8283643330049A7F7 /* Views */,
+				1EF451D9283643390049A7F7 /* Controllers */,
 				1EF451E8283648410049A7F7 /* Services */,
 				1EF451DD283643620049A7F7 /* Resources */,
 				1EF451DB283643540049A7F7 /* Storyboards */,
-				1EF451D9283643390049A7F7 /* Controllers */,
-				1EF451D8283643330049A7F7 /* Views */,
-				1EF451D72836432B0049A7F7 /* Model */,
 				1EF451D1283642FE0049A7F7 /* Info.plist */,
 			);
 			path = GitHubRepos;
@@ -116,6 +120,8 @@
 		1EF451DA283643480049A7F7 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				1EF451FA28364A630049A7F7 /* CommitTableViewCell.swift */,
+				1EF451FB28364A630049A7F7 /* RepoTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -265,9 +271,11 @@
 				1EF451C8283642FB0049A7F7 /* MainViewController.swift in Sources */,
 				1EF451F7283649870049A7F7 /* Errors.swift in Sources */,
 				1EF451C4283642FB0049A7F7 /* AppDelegate.swift in Sources */,
+				1EF451FD28364A630049A7F7 /* RepoTableViewCell.swift in Sources */,
 				1EF451F9283649CE0049A7F7 /* Model.swift in Sources */,
 				1EF451C6283642FB0049A7F7 /* SceneDelegate.swift in Sources */,
 				1EF451F5283649690049A7F7 /* APICaller.swift in Sources */,
+				1EF451FC28364A630049A7F7 /* CommitTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
