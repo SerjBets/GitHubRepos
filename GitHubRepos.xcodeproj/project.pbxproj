@@ -24,6 +24,8 @@
 		1EF451F9283649CE0049A7F7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451F8283649CE0049A7F7 /* Model.swift */; };
 		1EF451FC28364A630049A7F7 /* CommitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451FA28364A630049A7F7 /* CommitTableViewCell.swift */; };
 		1EF451FD28364A630049A7F7 /* RepoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451FB28364A630049A7F7 /* RepoTableViewCell.swift */; };
+		1EF451FF28364AE80049A7F7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451FE28364AE80049A7F7 /* DetailViewController.swift */; };
+		1EF4520128364B270049A7F7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF4520028364B270049A7F7 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		1EF451F8283649CE0049A7F7 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = GitHubRepos/Model/Model.swift; sourceTree = SOURCE_ROOT; };
 		1EF451FA28364A630049A7F7 /* CommitTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommitTableViewCell.swift; path = GitHubRepos/Views/Cells/CommitTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		1EF451FB28364A630049A7F7 /* RepoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepoTableViewCell.swift; path = GitHubRepos/Views/Cells/RepoTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		1EF451FE28364AE80049A7F7 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailViewController.swift; path = GitHubRepos/Controllers/DetailViewController.swift; sourceTree = SOURCE_ROOT; };
+		1EF4520028364B270049A7F7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = GitHubRepos/Services/Extensions.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +117,8 @@
 			isa = PBXGroup;
 			children = (
 				1EF451C7283642FB0049A7F7 /* MainViewController.swift */,
+				1EF4520028364B270049A7F7 /* Extensions.swift */,
+				1EF451FE28364AE80049A7F7 /* DetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -268,10 +274,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EF451FF28364AE80049A7F7 /* DetailViewController.swift in Sources */,
 				1EF451C8283642FB0049A7F7 /* MainViewController.swift in Sources */,
 				1EF451F7283649870049A7F7 /* Errors.swift in Sources */,
 				1EF451C4283642FB0049A7F7 /* AppDelegate.swift in Sources */,
 				1EF451FD28364A630049A7F7 /* RepoTableViewCell.swift in Sources */,
+				1EF4520128364B270049A7F7 /* Extensions.swift in Sources */,
 				1EF451F9283649CE0049A7F7 /* Model.swift in Sources */,
 				1EF451C6283642FB0049A7F7 /* SceneDelegate.swift in Sources */,
 				1EF451F5283649690049A7F7 /* APICaller.swift in Sources */,
