@@ -1,3 +1,0 @@
-Target dependency graph (2 targets)
-GitHubRepos in GitHubRepos, no dependencies
-GitHubRepos in GitHubRepos, no dependencies
