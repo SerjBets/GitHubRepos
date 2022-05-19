@@ -26,6 +26,7 @@ class MainViewController: UIViewController  {
         self.tableView.emptyDataSetDelegate = self
         self.registerTableViewCells()
         self.tableView.showActivityIndicator()
+        registerTableViewCells()
 
         //Get repos
         APICaller.shared.fetchStarsRepos(with: Constants.reposUrlString) { results in
@@ -59,8 +60,11 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.MainNibName, for: indexPath)
-                as? RepoTableViewCell else { return UITableViewCell() }
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.MainNibName, for: indexPath)
+//                as? RepoTableViewCell else { return UITableViewCell() }
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RepoTableVIewCell_inCode.identifier, for: indexPath)
+                as? RepoTableVIewCell_inCode else { return UITableViewCell() }
         cell.configureCell(with: reposList[indexPath.row])
         return cell
     }
@@ -72,8 +76,15 @@ extension MainViewController: UITableViewDataSource {
     }
     
     private func registerTableViewCells() {
-        let cellNib = UINib(nibName: Constants.MainNibName, bundle: nil)
-        self.tableView.register(cellNib, forCellReuseIdentifier: RepoTableViewCell.identifier)
+//        let cellNib = UINib(nibName: Constants.MainNibName, bundle: nil)
+//        self.tableView.register(cellNib, forCellReuseIdentifier: RepoTableViewCell.identifier)
+        
+        self.tableView.register(RepoTableVIewCell_inCode.self,
+                                forCellReuseIdentifier: RepoTableVIewCell_inCode.identifier)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 111
     }
     
 }

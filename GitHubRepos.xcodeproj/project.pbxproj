@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E71A57E2836931B00F81844 /* RepoTableVIewCell_inCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A57D2836931B00F81844 /* RepoTableVIewCell_inCode.swift */; };
 		1EF451C4283642FB0049A7F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451C3283642FB0049A7F7 /* AppDelegate.swift */; };
 		1EF451C6283642FB0049A7F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451C5283642FB0049A7F7 /* SceneDelegate.swift */; };
 		1EF451C8283642FB0049A7F7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451C7283642FB0049A7F7 /* MainViewController.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E71A57D2836931B00F81844 /* RepoTableVIewCell_inCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoTableVIewCell_inCode.swift; sourceTree = "<group>"; };
 		1EF451C0283642FB0049A7F7 /* GitHubRepos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubRepos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EF451C3283642FB0049A7F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EF451C5283642FB0049A7F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -125,8 +127,9 @@
 		1EF451DA283643480049A7F7 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				1EF451FA28364A630049A7F7 /* CommitTableViewCell.swift */,
 				1EF451FB28364A630049A7F7 /* RepoTableViewCell.swift */,
+				1EF451FA28364A630049A7F7 /* CommitTableViewCell.swift */,
+				1E71A57D2836931B00F81844 /* RepoTableVIewCell_inCode.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 			files = (
 				1EF451FF28364AE80049A7F7 /* DetailViewController.swift in Sources */,
 				1EF451C8283642FB0049A7F7 /* MainViewController.swift in Sources */,
+				1E71A57E2836931B00F81844 /* RepoTableVIewCell_inCode.swift in Sources */,
 				1EF451F7283649870049A7F7 /* Errors.swift in Sources */,
 				1EF451C4283642FB0049A7F7 /* AppDelegate.swift in Sources */,
 				1EF451FD28364A630049A7F7 /* RepoTableViewCell.swift in Sources */,
