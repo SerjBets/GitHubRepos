@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1E71A57E2836931B00F81844 /* RepoTableVIewCell_inCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A57D2836931B00F81844 /* RepoTableVIewCell_inCode.swift */; };
+		1E71A5802836970C00F81844 /* CommitTableViewCell_inCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A57F2836970C00F81844 /* CommitTableViewCell_inCode.swift */; };
 		1EF451C4283642FB0049A7F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451C3283642FB0049A7F7 /* AppDelegate.swift */; };
 		1EF451C6283642FB0049A7F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451C5283642FB0049A7F7 /* SceneDelegate.swift */; };
 		1EF451C8283642FB0049A7F7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451C7283642FB0049A7F7 /* MainViewController.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		1E71A57D2836931B00F81844 /* RepoTableVIewCell_inCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoTableVIewCell_inCode.swift; sourceTree = "<group>"; };
+		1E71A57F2836970C00F81844 /* CommitTableViewCell_inCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitTableViewCell_inCode.swift; sourceTree = "<group>"; };
 		1EF451C0283642FB0049A7F7 /* GitHubRepos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubRepos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EF451C3283642FB0049A7F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EF451C5283642FB0049A7F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,8 +50,8 @@
 		1EF451F4283649690049A7F7 /* APICaller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APICaller.swift; path = GitHubRepos/Services/APICaller.swift; sourceTree = SOURCE_ROOT; };
 		1EF451F6283649870049A7F7 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		1EF451F8283649CE0049A7F7 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = GitHubRepos/Model/Model.swift; sourceTree = SOURCE_ROOT; };
-		1EF451FA28364A630049A7F7 /* CommitTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommitTableViewCell.swift; path = GitHubRepos/Views/Cells/CommitTableViewCell.swift; sourceTree = SOURCE_ROOT; };
-		1EF451FB28364A630049A7F7 /* RepoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepoTableViewCell.swift; path = GitHubRepos/Views/Cells/RepoTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		1EF451FA28364A630049A7F7 /* CommitTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommitTableViewCell.swift; path = "GitHubRepos/Views/Cells storyboard/CommitTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		1EF451FB28364A630049A7F7 /* RepoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepoTableViewCell.swift; path = "GitHubRepos/Views/Cells storyboard/RepoTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		1EF451FE28364AE80049A7F7 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailViewController.swift; path = GitHubRepos/Controllers/DetailViewController.swift; sourceTree = SOURCE_ROOT; };
 		1EF4520028364B270049A7F7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = GitHubRepos/Services/Extensions.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -69,6 +71,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E71A5812836972500F81844 /* Cells in code */ = {
+			isa = PBXGroup;
+			children = (
+				1E71A57D2836931B00F81844 /* RepoTableVIewCell_inCode.swift */,
+				1E71A57F2836970C00F81844 /* CommitTableViewCell_inCode.swift */,
+			);
+			path = "Cells in code";
+			sourceTree = "<group>";
+		};
 		1EF451B7283642FB0049A7F7 = {
 			isa = PBXGroup;
 			children = (
@@ -110,7 +121,8 @@
 		1EF451D8283643330049A7F7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1EF451DA283643480049A7F7 /* Cells */,
+				1E71A5812836972500F81844 /* Cells in code */,
+				1EF451DA283643480049A7F7 /* Cells storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -124,14 +136,13 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		1EF451DA283643480049A7F7 /* Cells */ = {
+		1EF451DA283643480049A7F7 /* Cells storyboard */ = {
 			isa = PBXGroup;
 			children = (
 				1EF451FB28364A630049A7F7 /* RepoTableViewCell.swift */,
 				1EF451FA28364A630049A7F7 /* CommitTableViewCell.swift */,
-				1E71A57D2836931B00F81844 /* RepoTableVIewCell_inCode.swift */,
 			);
-			path = Cells;
+			path = "Cells storyboard";
 			sourceTree = "<group>";
 		};
 		1EF451DB283643540049A7F7 /* Storyboards */ = {
@@ -285,6 +296,7 @@
 				1EF451FD28364A630049A7F7 /* RepoTableViewCell.swift in Sources */,
 				1EF4520128364B270049A7F7 /* Extensions.swift in Sources */,
 				1EF451F9283649CE0049A7F7 /* Model.swift in Sources */,
+				1E71A5802836970C00F81844 /* CommitTableViewCell_inCode.swift in Sources */,
 				1EF451C6283642FB0049A7F7 /* SceneDelegate.swift in Sources */,
 				1EF451F5283649690049A7F7 /* APICaller.swift in Sources */,
 				1EF451FC28364A630049A7F7 /* CommitTableViewCell.swift in Sources */,

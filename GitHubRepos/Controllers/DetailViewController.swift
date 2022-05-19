@@ -59,8 +59,9 @@ class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
     //MARK: === ViewController LifeCycle ===
     override func viewDidLoad() {
         super.viewDidLoad()
-        let cellNib = UINib(nibName: Constants.DetailNibName, bundle: nil)
-        tableView.register(cellNib, forCellReuseIdentifier: CommitTableViewCell.identifier)
+        tableView.dataSource = self
+        tableView.delegate = self
+        registerTableViewCells()
         getCommits()
         updateUI()
     }
@@ -89,6 +90,13 @@ class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
 
 }
 
+// === MARK: - UITableViewDelegate ===
+extension DetailViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 111
+    }
+}
+
 // === MARK: - UITableViewDataSource ===
 extension DetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -96,7 +104,13 @@ extension DetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CommitTableViewCell.identifier) as! CommitTableViewCell
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.DetailNibName, for: indexPath)
+//                as? CommitTableViewCell else { return UITableViewCell() }
+                
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CommitTableVIewCell_inCode.identifier, for: indexPath)
+                as? CommitTableVIewCell_inCode else { return UITableViewCell() }
+        
+        
         cell.configureCell(with: commitsList[indexPath.row], index: indexPath)
         
         if indexPath.row >= 3 {
@@ -105,6 +119,13 @@ extension DetailViewController: UITableViewDataSource {
         return cell
     }
     
+    private func registerTableViewCells() {
+//        let cellNib = UINib(nibName: Constants.DetailNibName, bundle: nil)
+//        tableView.register(cellNib, forCellReuseIdentifier: CommitTableViewCell.identifier)
+        
+        self.tableView.register(CommitTableVIewCell_inCode.self,
+                                forCellReuseIdentifier: CommitTableVIewCell_inCode.identifier)
+    }
 }
 
 // === MARK: - SafariService ===

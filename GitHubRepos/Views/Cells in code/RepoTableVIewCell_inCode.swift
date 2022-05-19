@@ -24,6 +24,7 @@ class RepoTableVIewCell_inCode: UITableViewCell {
     private let repoImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "noImage")
+//        imageView.layer.borderWidth = 1.0
         imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
@@ -65,8 +66,6 @@ class RepoTableVIewCell_inCode: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        let width: CGFloat  = contentView.frame.size.width
-        let height: CGFloat = contentView.frame.size.height
         cellBackground.frame = CGRect(x: 16,
                                       y: 9,
                                       width: width - 32,

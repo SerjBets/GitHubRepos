@@ -52,7 +52,9 @@ class MainViewController: UIViewController  {
 
 // === MARK: - UITableViewDelegate ===
 extension MainViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 111
+    }
 }
 
 // === MARK: - UITableViewDataSource ===
@@ -84,11 +86,6 @@ extension MainViewController: UITableViewDataSource {
         self.tableView.register(RepoTableVIewCell_inCode.self,
                                 forCellReuseIdentifier: RepoTableVIewCell_inCode.identifier)
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 111
-    }
-    
 }
 // === MARK: - DZNEmptyDataSet ===
 extension MainViewController {

@@ -27,7 +27,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="111"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Commit author name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cN6-78-Ll9">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Commit author name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cN6-78-Ll9">
                         <rect key="frame" x="76" y="16" width="283" height="13"/>
                         <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="11"/>
                         <color key="textColor" red="0.2052414417" green="0.47036123279999997" blue="0.96475797890000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -84,7 +84,7 @@
                 <outlet property="userEmail" destination="kLh-4P-44u" id="GeI-lI-VyM"/>
                 <outlet property="userName" destination="cN6-78-Ll9" id="8wj-np-zpq"/>
             </connections>
-            <point key="canvasLocation" x="-127" y="56"/>
+            <point key="canvasLocation" x="-128.2608695652174" y="55.915178571428569"/>
         </tableViewCell>
     </objects>
 </document>
