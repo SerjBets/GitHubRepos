@@ -1,9 +1,8 @@
 //
 //  DetailViewController.swift
-//  TestTask
-//
-//  Created by Сергей Бец on 17.05.2022.
-//
+//  GitHubRepos
+//  Created by Serhii Bets on 13.04.2022.
+//  Copyright by Serhii Bets. All rights reserved.
 
 import UIKit
 import SDWebImage

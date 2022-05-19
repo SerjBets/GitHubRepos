@@ -1,9 +1,8 @@
 //
-//  ViewController.swift
-//  TestTask
-//
-//  Created by Сергей Бец on 16.05.2022.
-//
+//  MainViewController.swift
+//  GitHubRepos
+//  Created by Serhii Bets on 13.04.2022.
+//  Copyright by Serhii Bets. All rights reserved.
 
 import UIKit
 import SDWebImage
@@ -26,6 +25,7 @@ class MainViewController: UIViewController  {
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
         self.registerTableViewCells()
+        self.tableView.showActivityIndicator()
 
         //Get repos
         APICaller.shared.fetchStarsRepos(with: Constants.reposUrlString) { results in

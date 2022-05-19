@@ -1,9 +1,8 @@
 //
 //  APICaller.swift
-//  TestTask
-//
-//  Created by Сергей Бец on 16.05.2022.
-//
+//  GitHubRepos
+//  Created by Serhii Bets on 13.04.2022.
+//  Copyright by Serhii Bets. All rights reserved.
 
 import Foundation
 import Alamofire
@@ -19,7 +18,7 @@ class APICaller {
         
         guard let url = URL(string: urlString) else { return }
         let _ = AF.request(url, method: .get, parameters: params).validate().response { response in
-               print(response.request)
+//               print(response.request)
 //               print(response.response)
 //               print(response.data)
 //               print(response.result)

@@ -1,9 +1,8 @@
 //
 //  AppDelegate.swift
 //  GitHubRepos
-//
-//  Created by Сергей Бец on 19.05.2022.
-//
+//  Created by Serhii Bets on 13.04.2022.
+//  Copyright by Serhii Bets. All rights reserved.
 
 import UIKit
 

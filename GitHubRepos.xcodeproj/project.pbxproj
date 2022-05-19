@@ -86,10 +86,10 @@
 		1EF451C2283642FB0049A7F7 /* GitHubRepos */ = {
 			isa = PBXGroup;
 			children = (
+				1EF451E8283648410049A7F7 /* Services */,
 				1EF451D72836432B0049A7F7 /* Model */,
 				1EF451D8283643330049A7F7 /* Views */,
 				1EF451D9283643390049A7F7 /* Controllers */,
-				1EF451E8283648410049A7F7 /* Services */,
 				1EF451DD283643620049A7F7 /* Resources */,
 				1EF451DB283643540049A7F7 /* Storyboards */,
 				1EF451D1283642FE0049A7F7 /* Info.plist */,
