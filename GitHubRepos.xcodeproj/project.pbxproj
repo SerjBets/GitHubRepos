@@ -13,6 +13,8 @@
 		1EF451CB283642FC0049A7F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EF451C9283642FC0049A7F7 /* Main.storyboard */; };
 		1EF451CD283642FE0049A7F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EF451CC283642FE0049A7F7 /* Assets.xcassets */; };
 		1EF451D0283642FE0049A7F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EF451CE283642FE0049A7F7 /* LaunchScreen.storyboard */; };
+		1EF451E2283647530049A7F7 /* CommitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EF451E0283647530049A7F7 /* CommitTableViewCell.xib */; };
+		1EF451E3283647530049A7F7 /* RepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EF451E1283647530049A7F7 /* RepoTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,12 @@
 		1EF451CC283642FE0049A7F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1EF451CF283642FE0049A7F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1EF451D1283642FE0049A7F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1EF451E0283647530049A7F7 /* CommitTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommitTableViewCell.xib; sourceTree = "<group>"; };
+		1EF451E1283647530049A7F7 /* RepoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepoTableViewCell.xib; sourceTree = "<group>"; };
+		1EF451E4283647BB0049A7F7 /* SFProText-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Regular.otf"; sourceTree = "<group>"; };
+		1EF451E5283647BC0049A7F7 /* SFProDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Bold.otf"; sourceTree = "<group>"; };
+		1EF451E6283647BC0049A7F7 /* SFProText-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Semibold.otf"; sourceTree = "<group>"; };
+		1EF451E7283647BC0049A7F7 /* SFProText-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Medium.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +117,8 @@
 		1EF451DC2836435A0049A7F7 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				1EF451E0283647530049A7F7 /* CommitTableViewCell.xib */,
+				1EF451E1283647530049A7F7 /* RepoTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -135,6 +145,10 @@
 		1EF451DF283643710049A7F7 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				1EF451E5283647BC0049A7F7 /* SFProDisplay-Bold.otf */,
+				1EF451E7283647BC0049A7F7 /* SFProText-Medium.otf */,
+				1EF451E4283647BB0049A7F7 /* SFProText-Regular.otf */,
+				1EF451E6283647BC0049A7F7 /* SFProText-Semibold.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -197,9 +211,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EF451E2283647530049A7F7 /* CommitTableViewCell.xib in Resources */,
 				1EF451D0283642FE0049A7F7 /* LaunchScreen.storyboard in Resources */,
 				1EF451CD283642FE0049A7F7 /* Assets.xcassets in Resources */,
 				1EF451CB283642FC0049A7F7 /* Main.storyboard in Resources */,
+				1EF451E3283647530049A7F7 /* RepoTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
