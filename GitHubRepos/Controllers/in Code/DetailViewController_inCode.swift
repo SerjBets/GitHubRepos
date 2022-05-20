@@ -114,6 +114,31 @@ class DetailViewController_inCode: UIViewController, SFSafariViewControllerDeleg
         view.addSubview(tableView)
     }
     
+    private func makeBackButton() -> UIButton {
+        let backButtonImage = UIImage(systemName: "chevron.backward")?.withRenderingMode(.alwaysTemplate)
+        let backButton = UIButton(type: .custom)
+        backButton.tintColor = .systemBackground
+        backButton.setImage(backButtonImage, for: .normal)
+        backButton.setTitle("  Back", for: .normal)
+        backButton.setTitleColor(.systemBackground, for: .normal)
+        backButton.addTarget(self, action: #selector(self.backButtonPressed), for: .touchUpInside)
+        return backButton
+    }
+    
+    @objc private func backButtonPressed() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: === Init ===
+    init(model: Repo) {
+        super.init(nibName: nil, bundle: nil)
+        self.repoItem = model
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     //MARK: === ViewController LifeCycle ===
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,8 +148,8 @@ class DetailViewController_inCode: UIViewController, SFSafariViewControllerDeleg
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
         addSubviews()
-        registerTableViewCells()
         getCommits()
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: makeBackButton())
     }
     
     override func viewDidLayoutSubviews() {
@@ -200,11 +225,6 @@ extension DetailViewController_inCode: UITableViewDataSource {
         }
         return cell
     }
-    
-    private func registerTableViewCells() {
-        self.tableView.register(CommitTableVIewCell_inCode.self,
-                                forCellReuseIdentifier: CommitTableVIewCell_inCode.identifier)
-    }
 }
 
 // === MARK: - SafariService ===
@@ -226,7 +246,6 @@ extension DetailViewController_inCode {
 
     func emptyDataSet(_ scrollView: UIScrollView, didTap button: UIButton) {
         self.tableView.showActivityIndicator()
-        
         APICaller.shared.fetchCommits(with: Constants.commitsUrlString) { results in
             switch results {
             case .success(let commits):

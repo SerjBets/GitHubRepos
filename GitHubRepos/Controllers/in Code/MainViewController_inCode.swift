@@ -64,7 +64,6 @@ class MainViewController_inCode: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.showActivityIndicator()
-        registerTableViewCells()
         addSubviews()
         
         //Get repos
@@ -123,15 +122,13 @@ extension MainViewController_inCode: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repoItem = reposList[indexPath.row]
         delegate?.didTaptableViewCell(with: repoItem)
-        let vc = DetailViewController_inCode()
-        navigationController?.pushViewController(vc, animated: true)
+        let vc = DetailViewController_inCode(model: repoItem)
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .custom
+        present(navVC, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    private func registerTableViewCells() {
-        self.tableView.register(RepoTableVIewCell_inCode.self,
-                                forCellReuseIdentifier: RepoTableVIewCell_inCode.identifier)
-    }
 }
 // === MARK: - DZNEmptyDataSet ===
 extension MainViewController_inCode {
