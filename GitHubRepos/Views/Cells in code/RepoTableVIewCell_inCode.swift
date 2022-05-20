@@ -16,6 +16,7 @@ class RepoTableVIewCell_inCode: UITableViewCell {
         button.backgroundColor = UIColor(named: "cellBackground")
         button.layer.cornerRadius = 13
         button.titleLabel?.text = ""
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.clipsToBounds = true
         button.isEnabled = false
         return button
@@ -25,6 +26,7 @@ class RepoTableVIewCell_inCode: UITableViewCell {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "noImage")
 //        imageView.layer.borderWidth = 1.0
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
@@ -34,6 +36,7 @@ class RepoTableVIewCell_inCode: UITableViewCell {
     private let starImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "starIcon")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
         return imageView
@@ -43,6 +46,7 @@ class RepoTableVIewCell_inCode: UITableViewCell {
         let label = UILabel()
         label.text = "Repo Title"
         label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "SFProText-Semibold", size: 17)
         return label
     }()
@@ -51,6 +55,7 @@ class RepoTableVIewCell_inCode: UITableViewCell {
         let label = UILabel()
         label.text = "8877"
         label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "SFProText-Regular", size: 17)
         label.textColor = UIColor(named: "warmGray")
         return label

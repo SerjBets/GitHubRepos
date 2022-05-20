@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1E71A57E2836931B00F81844 /* RepoTableVIewCell_inCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A57D2836931B00F81844 /* RepoTableVIewCell_inCode.swift */; };
 		1E71A5802836970C00F81844 /* CommitTableViewCell_inCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A57F2836970C00F81844 /* CommitTableViewCell_inCode.swift */; };
+		1E71A5892836BA7D00F81844 /* MainViewController_inCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A5882836BA7D00F81844 /* MainViewController_inCode.swift */; };
 		1EF451C4283642FB0049A7F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451C3283642FB0049A7F7 /* AppDelegate.swift */; };
 		1EF451C6283642FB0049A7F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451C5283642FB0049A7F7 /* SceneDelegate.swift */; };
 		1EF451C8283642FB0049A7F7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451C7283642FB0049A7F7 /* MainViewController.swift */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		1E71A57D2836931B00F81844 /* RepoTableVIewCell_inCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoTableVIewCell_inCode.swift; sourceTree = "<group>"; };
 		1E71A57F2836970C00F81844 /* CommitTableViewCell_inCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitTableViewCell_inCode.swift; sourceTree = "<group>"; };
+		1E71A5882836BA7D00F81844 /* MainViewController_inCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController_inCode.swift; sourceTree = "<group>"; };
 		1EF451C0283642FB0049A7F7 /* GitHubRepos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubRepos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EF451C3283642FB0049A7F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EF451C5283642FB0049A7F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			children = (
 				1EF451C7283642FB0049A7F7 /* MainViewController.swift */,
 				1EF451FE28364AE80049A7F7 /* DetailViewController.swift */,
+				1E71A5882836BA7D00F81844 /* MainViewController_inCode.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				1EF451C6283642FB0049A7F7 /* SceneDelegate.swift in Sources */,
 				1EF451F5283649690049A7F7 /* APICaller.swift in Sources */,
 				1EF451FC28364A630049A7F7 /* CommitTableViewCell.swift in Sources */,
+				1E71A5892836BA7D00F81844 /* MainViewController_inCode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

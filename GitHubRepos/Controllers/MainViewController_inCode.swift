@@ -1,25 +1,34 @@
 //
-//  MainViewController.swift
+//  MainViewController_inCode.swift
 //  GitHubRepos
-//  Created by Serhii Bets on 13.04.2022.
-//  Copyright by Serhii Bets. All rights reserved.
+//
+//  Created by Сергей Бец on 19.05.2022.
+//
 
 import UIKit
-import SDWebImage
-import DZNEmptyDataSet
 
-class MainViewController: UIViewController  {
-    
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
-    
+class MainViewController_inCode: UIViewController {
     var reposList = [Repo]() {
         didSet {
             tableView.reloadData()
         }
     }
+
+    private let searchTitle: UILabel = {
+        let label = UILabel()
+        label.text = "Search"
+        label.numberOfLines = 0
+        label.font = UIFont(name: "SFProDisplay-Bold", size: 34)
+        return label
+    }()
     
-    //MARK: === ViewController LifeCycle ===
+    private let tableView: UITableView = {
+        let table = UITableView()
+        table.register(RepoTableVIewCell_inCode.self, forCellReuseIdentifier: RepoTableVIewCell_inCode.identifier)
+        return table
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.emptyDataSetSource = self
@@ -27,8 +36,8 @@ class MainViewController: UIViewController  {
         tableView.delegate = self
         tableView.dataSource = self
         self.tableView.showActivityIndicator()
-        registerTableViewCells()
-
+        self.registerTableViewCells()
+        
         //Get repos
         APICaller.shared.fetchStarsRepos(with: Constants.reposUrlString) { results in
             switch results {
@@ -40,24 +49,17 @@ class MainViewController: UIViewController  {
             }
         }
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == Constants.segue,
-                let repos = sender as? Repo,
-                let detailedVC = segue.destination as? DetailViewController else { return }
-        detailedVC.repoItem = repos
-    }
 }
 
 // === MARK: - UITableViewDelegate ===
-extension MainViewController: UITableViewDelegate {
+extension MainViewController_inCode: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 111
     }
 }
 
 // === MARK: - UITableViewDataSource ===
-extension MainViewController: UITableViewDataSource {
+extension MainViewController_inCode: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return reposList.count
     }
@@ -79,15 +81,12 @@ extension MainViewController: UITableViewDataSource {
     }
     
     private func registerTableViewCells() {
-//        let cellNib = UINib(nibName: Constants.MainNibName, bundle: nil)
-//        self.tableView.register(cellNib, forCellReuseIdentifier: RepoTableViewCell.identifier)
-        
         self.tableView.register(RepoTableVIewCell_inCode.self,
                                 forCellReuseIdentifier: RepoTableVIewCell_inCode.identifier)
     }
 }
 // === MARK: - DZNEmptyDataSet ===
-extension MainViewController {
+extension MainViewController_inCode {
 
     func emptyDataSet(_ scrollView: UIScrollView, didTap button: UIButton) {
         self.tableView.showActivityIndicator()

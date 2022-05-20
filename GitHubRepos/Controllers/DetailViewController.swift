@@ -63,7 +63,6 @@ class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
         tableView.delegate = self
         registerTableViewCells()
         getCommits()
-        updateUI()
     }
 
     func getCommits() {
@@ -85,7 +84,8 @@ class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
         userImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
         userImage.sd_setImage(with: avatarUrl)
         repoTitle.text = repoItem.name
-        
+        repoAuthorTitle.text = commitsList[0].commit.author.name
+        numberStarsTitle.text = "\(repoItem.starsCount)"
     }
 
 }
