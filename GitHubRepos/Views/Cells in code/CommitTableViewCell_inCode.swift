@@ -11,10 +11,12 @@ import SDWebImage
 class CommitTableVIewCell_inCode: UITableViewCell {
     static let identifier = "CommitTableVIewCell_inCode"
     
+//MARK: === UI Items ===
     private let commitNumberTitle: UILabel = {
         let label = UILabel()
         label.text = "1"
         label.clipsToBounds = true
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "SFProText-Medium", size: 17)
         return label
     }()
@@ -23,6 +25,7 @@ class CommitTableVIewCell_inCode: UITableViewCell {
         let label = UILabel()
         label.text = "COMMIT AUTHOR NAME".uppercased()
         label.textColor = .blue
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.clipsToBounds = true
         label.font = UIFont(name: "SFProText-Semibold", size: 11)
         return label
@@ -32,6 +35,7 @@ class CommitTableVIewCell_inCode: UITableViewCell {
         let label = UILabel()
         label.text = "email@authorname.com"
         label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "SFProText-Regular", size: 17)
         label.clipsToBounds = true
         return label
@@ -40,6 +44,7 @@ class CommitTableVIewCell_inCode: UITableViewCell {
     private let commitMessageTitle: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.lineBreakMode = .byWordWrapping
         label.text = "This is commit message that need to fold over to the next line"
         label.font = UIFont(name: "SFProText-Regular", size: 17)
@@ -52,6 +57,7 @@ class CommitTableVIewCell_inCode: UITableViewCell {
         button.backgroundColor = UIColor(named: "cellBackground")
         button.layer.cornerRadius = 18
         button.titleLabel?.text = ""
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.masksToBounds = true
         button.clipsToBounds = true
         button.isEnabled = false

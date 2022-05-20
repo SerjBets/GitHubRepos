@@ -1,11 +1,14 @@
 //
 //  MainViewController_inCode.swift
 //  GitHubRepos
-//
-//  Created by Сергей Бец on 19.05.2022.
-//
+//  Created by Serhii Bets on 13.04.2022.
+//  Copyright by Serhii Bets. All rights reserved.
 
 import UIKit
+
+protocol MainViewController_inCodeDelegate {
+    func didTaptableViewCell(with model: Repo)
+}
 
 class MainViewController_inCode: UIViewController {
     var reposList = [Repo]() {
@@ -13,12 +16,29 @@ class MainViewController_inCode: UIViewController {
             tableView.reloadData()
         }
     }
-
+    var delegate: MainViewController_inCodeDelegate?
+    
+    //MARK: === UI Items ===
     private let searchTitle: UILabel = {
         let label = UILabel()
         label.text = "Search"
         label.numberOfLines = 0
+        label.clipsToBounds = true
         label.font = UIFont(name: "SFProDisplay-Bold", size: 34)
+        return label
+    }()
+    
+    private let searchBar: UISearchBar = {
+        let bar = UISearchBar()
+        bar.placeholder = "Search"
+        return bar
+    }()
+    
+    private let tableViewTitle: UILabel = {
+        let label = UILabel()
+        label.text = "Repositories"
+        label.numberOfLines = 0
+        label.font = UIFont(name: "SFProDisplay-Bold", size: 22)
         return label
     }()
     
@@ -28,15 +48,24 @@ class MainViewController_inCode: UIViewController {
         return table
     }()
     
-    
+    private func addSubviews() {
+        view.addSubview(searchTitle)
+        view.addSubview(searchBar)
+        view.addSubview(tableViewTitle)
+        view.addSubview(tableView)
+    }
+
+//MARK: === ViewController LifeCycle ===
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.emptyDataSetSource = self
-        self.tableView.emptyDataSetDelegate = self
+        view.backgroundColor = .systemBackground
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
         tableView.delegate = self
         tableView.dataSource = self
-        self.tableView.showActivityIndicator()
-        self.registerTableViewCells()
+        tableView.showActivityIndicator()
+        registerTableViewCells()
+        addSubviews()
         
         //Get repos
         APICaller.shared.fetchStarsRepos(with: Constants.reposUrlString) { results in
@@ -48,6 +77,26 @@ class MainViewController_inCode: UIViewController {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        searchTitle.frame    = CGRect(x: 16,
+                                      y: 89,
+                                      width: view.width - 32,
+                                      height: 41)
+        searchBar.frame      = CGRect(x: 16,
+                                      y: searchTitle.bottom + 14,
+                                      width: view.width - 32,
+                                      height: 36)
+        tableViewTitle.frame = CGRect(x: 16,
+                                      y: searchBar.bottom + 30,
+                                      width: view.width - 32,
+                                      height: 28)
+        tableView.frame      = CGRect(x: 0,
+                                      y: tableViewTitle.bottom + 9,
+                                      width: view.width,
+                                      height: view.height - tableViewTitle.bottom - 9)
     }
 }
 
@@ -65,9 +114,6 @@ extension MainViewController_inCode: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.MainNibName, for: indexPath)
-//                as? RepoTableViewCell else { return UITableViewCell() }
-        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RepoTableVIewCell_inCode.identifier, for: indexPath)
                 as? RepoTableVIewCell_inCode else { return UITableViewCell() }
         cell.configureCell(with: reposList[indexPath.row])
@@ -76,7 +122,9 @@ extension MainViewController_inCode: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repoItem = reposList[indexPath.row]
-        performSegue(withIdentifier: Constants.segue, sender: repoItem)
+        delegate?.didTaptableViewCell(with: repoItem)
+        let vc = DetailViewController_inCode()
+        navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

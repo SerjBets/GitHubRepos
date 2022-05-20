@@ -19,14 +19,14 @@ class MainViewController: UIViewController  {
         }
     }
     
-    //MARK: === ViewController LifeCycle ===
+//MARK: === ViewController LifeCycle ===
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.emptyDataSetSource = self
-        self.tableView.emptyDataSetDelegate = self
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
         tableView.delegate = self
         tableView.dataSource = self
-        self.tableView.showActivityIndicator()
+        tableView.showActivityIndicator()
         registerTableViewCells()
 
         //Get repos
@@ -63,6 +63,7 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+// UI tableViewCell in Storyboard in xib
 //        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.MainNibName, for: indexPath)
 //                as? RepoTableViewCell else { return UITableViewCell() }
         
@@ -79,6 +80,7 @@ extension MainViewController: UITableViewDataSource {
     }
     
     private func registerTableViewCells() {
+// UI tableViewCell in Storyboard in xib
 //        let cellNib = UINib(nibName: Constants.MainNibName, bundle: nil)
 //        self.tableView.register(cellNib, forCellReuseIdentifier: RepoTableViewCell.identifier)
         

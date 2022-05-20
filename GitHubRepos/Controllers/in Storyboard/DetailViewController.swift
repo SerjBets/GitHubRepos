@@ -61,12 +61,13 @@ class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
         registerTableViewCells()
         getCommits()
     }
 
-    func getCommits() {
-
+    private func getCommits() {
         APICaller.shared.fetchCommits(with: Constants.commitsUrlString) { results in
             switch results {
             case .success(let commits):
@@ -104,6 +105,7 @@ extension DetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+// UI tableViewCell in Storyboard in xib
 //        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.DetailNibName, for: indexPath)
 //                as? CommitTableViewCell else { return UITableViewCell() }
                 
@@ -120,6 +122,7 @@ extension DetailViewController: UITableViewDataSource {
     }
     
     private func registerTableViewCells() {
+// UI tableViewCell in Storyboard in xib
 //        let cellNib = UINib(nibName: Constants.DetailNibName, bundle: nil)
 //        tableView.register(cellNib, forCellReuseIdentifier: CommitTableViewCell.identifier)
         

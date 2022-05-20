@@ -10,6 +10,11 @@
 		1E71A57E2836931B00F81844 /* RepoTableVIewCell_inCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A57D2836931B00F81844 /* RepoTableVIewCell_inCode.swift */; };
 		1E71A5802836970C00F81844 /* CommitTableViewCell_inCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A57F2836970C00F81844 /* CommitTableViewCell_inCode.swift */; };
 		1E71A5892836BA7D00F81844 /* MainViewController_inCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A5882836BA7D00F81844 /* MainViewController_inCode.swift */; };
+		1E71A59E28379A9500F81844 /* SFProText-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1E71A59A28379A9500F81844 /* SFProText-Regular.otf */; };
+		1E71A59F28379A9500F81844 /* SFProText-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1E71A59B28379A9500F81844 /* SFProText-Semibold.otf */; };
+		1E71A5A028379A9500F81844 /* SFProDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1E71A59C28379A9500F81844 /* SFProDisplay-Bold.otf */; };
+		1E71A5A128379A9500F81844 /* SFProText-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1E71A59D28379A9500F81844 /* SFProText-Medium.otf */; };
+		1E71A5A328379D1600F81844 /* DetailViewController_inCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E71A5A228379D1600F81844 /* DetailViewController_inCode.swift */; };
 		1EF451C4283642FB0049A7F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451C3283642FB0049A7F7 /* AppDelegate.swift */; };
 		1EF451C6283642FB0049A7F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451C5283642FB0049A7F7 /* SceneDelegate.swift */; };
 		1EF451C8283642FB0049A7F7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451C7283642FB0049A7F7 /* MainViewController.swift */; };
@@ -35,6 +40,11 @@
 		1E71A57D2836931B00F81844 /* RepoTableVIewCell_inCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoTableVIewCell_inCode.swift; sourceTree = "<group>"; };
 		1E71A57F2836970C00F81844 /* CommitTableViewCell_inCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitTableViewCell_inCode.swift; sourceTree = "<group>"; };
 		1E71A5882836BA7D00F81844 /* MainViewController_inCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController_inCode.swift; sourceTree = "<group>"; };
+		1E71A59A28379A9500F81844 /* SFProText-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Regular.otf"; sourceTree = "<group>"; };
+		1E71A59B28379A9500F81844 /* SFProText-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Semibold.otf"; sourceTree = "<group>"; };
+		1E71A59C28379A9500F81844 /* SFProDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Bold.otf"; sourceTree = "<group>"; };
+		1E71A59D28379A9500F81844 /* SFProText-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Medium.otf"; sourceTree = "<group>"; };
+		1E71A5A228379D1600F81844 /* DetailViewController_inCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController_inCode.swift; sourceTree = "<group>"; };
 		1EF451C0283642FB0049A7F7 /* GitHubRepos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubRepos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EF451C3283642FB0049A7F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EF451C5283642FB0049A7F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,16 +55,12 @@
 		1EF451D1283642FE0049A7F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1EF451E0283647530049A7F7 /* CommitTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommitTableViewCell.xib; sourceTree = "<group>"; };
 		1EF451E1283647530049A7F7 /* RepoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepoTableViewCell.xib; sourceTree = "<group>"; };
-		1EF451E4283647BB0049A7F7 /* SFProText-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Regular.otf"; sourceTree = "<group>"; };
-		1EF451E5283647BC0049A7F7 /* SFProDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Bold.otf"; sourceTree = "<group>"; };
-		1EF451E6283647BC0049A7F7 /* SFProText-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Semibold.otf"; sourceTree = "<group>"; };
-		1EF451E7283647BC0049A7F7 /* SFProText-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Medium.otf"; sourceTree = "<group>"; };
 		1EF451F4283649690049A7F7 /* APICaller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APICaller.swift; path = GitHubRepos/Services/APICaller.swift; sourceTree = SOURCE_ROOT; };
 		1EF451F6283649870049A7F7 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		1EF451F8283649CE0049A7F7 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = GitHubRepos/Model/Model.swift; sourceTree = SOURCE_ROOT; };
 		1EF451FA28364A630049A7F7 /* CommitTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommitTableViewCell.swift; path = "GitHubRepos/Views/Cells storyboard/CommitTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		1EF451FB28364A630049A7F7 /* RepoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepoTableViewCell.swift; path = "GitHubRepos/Views/Cells storyboard/RepoTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
-		1EF451FE28364AE80049A7F7 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailViewController.swift; path = GitHubRepos/Controllers/DetailViewController.swift; sourceTree = SOURCE_ROOT; };
+		1EF451FE28364AE80049A7F7 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailViewController.swift; path = "GitHubRepos/Controllers/in Storyboard/DetailViewController.swift"; sourceTree = SOURCE_ROOT; };
 		1EF4520028364B270049A7F7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = GitHubRepos/Services/Extensions.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -80,6 +86,35 @@
 				1E71A57F2836970C00F81844 /* CommitTableViewCell_inCode.swift */,
 			);
 			path = "Cells in code";
+			sourceTree = "<group>";
+		};
+		1E71A595283794E200F81844 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				1E71A59C28379A9500F81844 /* SFProDisplay-Bold.otf */,
+				1E71A59D28379A9500F81844 /* SFProText-Medium.otf */,
+				1E71A59A28379A9500F81844 /* SFProText-Regular.otf */,
+				1E71A59B28379A9500F81844 /* SFProText-Semibold.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		1E71A5A428379DF100F81844 /* in Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				1EF451C7283642FB0049A7F7 /* MainViewController.swift */,
+				1EF451FE28364AE80049A7F7 /* DetailViewController.swift */,
+			);
+			path = "in Storyboard";
+			sourceTree = "<group>";
+		};
+		1E71A5A528379E0300F81844 /* in Code */ = {
+			isa = PBXGroup;
+			children = (
+				1E71A5882836BA7D00F81844 /* MainViewController_inCode.swift */,
+				1E71A5A228379D1600F81844 /* DetailViewController_inCode.swift */,
+			);
+			path = "in Code";
 			sourceTree = "<group>";
 		};
 		1EF451B7283642FB0049A7F7 = {
@@ -132,9 +167,8 @@
 		1EF451D9283643390049A7F7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				1EF451C7283642FB0049A7F7 /* MainViewController.swift */,
-				1EF451FE28364AE80049A7F7 /* DetailViewController.swift */,
-				1E71A5882836BA7D00F81844 /* MainViewController_inCode.swift */,
+				1E71A5A428379DF100F81844 /* in Storyboard */,
+				1E71A5A528379E0300F81844 /* in Code */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -170,10 +204,10 @@
 		1EF451DD283643620049A7F7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1EF451DE2836436C0049A7F7 /* Assets */,
+				1E71A595283794E200F81844 /* Fonts */,
 				1EF451C3283642FB0049A7F7 /* AppDelegate.swift */,
 				1EF451C5283642FB0049A7F7 /* SceneDelegate.swift */,
-				1EF451DF283643710049A7F7 /* Fonts */,
-				1EF451DE2836436C0049A7F7 /* Assets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -184,17 +218,6 @@
 				1EF451CC283642FE0049A7F7 /* Assets.xcassets */,
 			);
 			path = Assets;
-			sourceTree = "<group>";
-		};
-		1EF451DF283643710049A7F7 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				1EF451E5283647BC0049A7F7 /* SFProDisplay-Bold.otf */,
-				1EF451E7283647BC0049A7F7 /* SFProText-Medium.otf */,
-				1EF451E4283647BB0049A7F7 /* SFProText-Regular.otf */,
-				1EF451E6283647BC0049A7F7 /* SFProText-Semibold.otf */,
-			);
-			path = Fonts;
 			sourceTree = "<group>";
 		};
 		1EF451E8283648410049A7F7 /* Services */ = {
@@ -276,10 +299,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E71A59F28379A9500F81844 /* SFProText-Semibold.otf in Resources */,
 				1EF451E2283647530049A7F7 /* CommitTableViewCell.xib in Resources */,
+				1E71A5A028379A9500F81844 /* SFProDisplay-Bold.otf in Resources */,
 				1EF451D0283642FE0049A7F7 /* LaunchScreen.storyboard in Resources */,
 				1EF451CD283642FE0049A7F7 /* Assets.xcassets in Resources */,
+				1E71A5A128379A9500F81844 /* SFProText-Medium.otf in Resources */,
 				1EF451CB283642FC0049A7F7 /* Main.storyboard in Resources */,
+				1E71A59E28379A9500F81844 /* SFProText-Regular.otf in Resources */,
 				1EF451E3283647530049A7F7 /* RepoTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,6 +321,7 @@
 				1EF451FF28364AE80049A7F7 /* DetailViewController.swift in Sources */,
 				1EF451C8283642FB0049A7F7 /* MainViewController.swift in Sources */,
 				1E71A57E2836931B00F81844 /* RepoTableVIewCell_inCode.swift in Sources */,
+				1E71A5A328379D1600F81844 /* DetailViewController_inCode.swift in Sources */,
 				1EF451F7283649870049A7F7 /* Errors.swift in Sources */,
 				1EF451C4283642FB0049A7F7 /* AppDelegate.swift in Sources */,
 				1EF451FD28364A630049A7F7 /* RepoTableViewCell.swift in Sources */,
@@ -457,7 +485,6 @@
 				INFOPLIST_FILE = GitHubRepos/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -485,7 +512,6 @@
 				INFOPLIST_FILE = GitHubRepos/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
