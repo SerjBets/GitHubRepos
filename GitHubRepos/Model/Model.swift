@@ -6,15 +6,6 @@
 
 import Foundation
 
-struct Constants {
-    static let MainNibName = "RepoTableViewCell"
-    static let DetailNibName = "CommitTableViewCell"
-    static let segue   = "detailSegue"
-    static let userUrlString = "https://api.github.com/search/users"
-    static let reposUrlString = "https://api.github.com/search/repositories?"
-    static let commitsUrlString = "https://api.github.com/repos/freeCodeCamp/freeCodeCamp/commits"
-}
-
 //Array of repositories
 struct Repos: Codable {
     let items: [Repo]

@@ -109,7 +109,7 @@ extension DetailViewController: UITableViewDataSource {
 //        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.DetailNibName, for: indexPath)
 //                as? CommitTableViewCell else { return UITableViewCell() }
                 
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CommitTableVIewCell_inCode.identifier, for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.commitTableViewCell, for: indexPath)
                 as? CommitTableVIewCell_inCode else { return UITableViewCell() }
         
         
@@ -127,7 +127,7 @@ extension DetailViewController: UITableViewDataSource {
 //        tableView.register(cellNib, forCellReuseIdentifier: CommitTableViewCell.identifier)
         
         self.tableView.register(CommitTableVIewCell_inCode.self,
-                                forCellReuseIdentifier: CommitTableVIewCell_inCode.identifier)
+                                forCellReuseIdentifier: Constants.commitTableViewCell)
     }
 }
 

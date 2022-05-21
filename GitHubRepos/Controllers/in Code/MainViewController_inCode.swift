@@ -24,7 +24,7 @@ class MainViewController_inCode: UIViewController {
         label.text = "Search"
         label.numberOfLines = 0
         label.clipsToBounds = true
-        label.font = UIFont(name: "SFProDisplay-Bold", size: 34)
+        label.font = UIFont(name: customFonts.displayBold.rawValue, size: 34)
         return label
     }()
     
@@ -38,7 +38,7 @@ class MainViewController_inCode: UIViewController {
         let label = UILabel()
         label.text = "Repositories"
         label.numberOfLines = 0
-        label.font = UIFont(name: "SFProDisplay-Bold", size: 22)
+        label.font = UIFont(name: customFonts.displayBold.rawValue, size: 22)
         return label
     }()
     
@@ -78,6 +78,7 @@ class MainViewController_inCode: UIViewController {
         }
     }
     
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         searchTitle.frame    = CGRect(x: 16,
@@ -93,16 +94,16 @@ class MainViewController_inCode: UIViewController {
                                       width: view.width - 32,
                                       height: 28)
         tableView.frame      = CGRect(x: 0,
-                                      y: tableViewTitle.bottom + 9,
+                                      y: tableViewTitle.bottom,
                                       width: view.width,
-                                      height: view.height - tableViewTitle.bottom - 9)
+                                      height: view.height - tableViewTitle.bottom)
     }
 }
 
 // === MARK: - UITableViewDelegate ===
 extension MainViewController_inCode: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 111
+        return 101
     }
 }
 

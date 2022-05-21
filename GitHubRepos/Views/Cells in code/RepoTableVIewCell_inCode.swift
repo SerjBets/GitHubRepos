@@ -26,7 +26,6 @@ class RepoTableVIewCell_inCode: UITableViewCell {
     private let repoImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "noImage")
-//        imageView.layer.borderWidth = 1.0
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
@@ -70,33 +69,55 @@ class RepoTableVIewCell_inCode: UITableViewCell {
         contentView.addSubview(starsTitle)
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        cellBackground.frame = CGRect(x: 16,
-                                      y: 9,
-                                      width: width - 32,
-                                      height: height - 18)
-        repoImage.frame      = CGRect(x: cellBackground.left + 16,
-                                      y: cellBackground.top + 16,
-                                      width: 60,
-                                      height: 60)
-        repoTitle.frame      = CGRect(x: repoImage.right + 16,
-                                      y: cellBackground.top + 26,
-                                      width: width - repoImage.width - 48,
-                                      height: 22)
-        starImage.frame      = CGRect(x: repoImage.right + 16,
-                                      y: repoTitle.bottom + 4,
-                                      width: 14,
-                                      height: 14)
-        starsTitle.frame     = CGRect(x: starImage.right + 4,
-                                      y: repoTitle.bottom,
-                                      width: width - starImage.right - 16,
-                                      height: 22)
+//MARK: === Constraints ==
+    private func applyConstraints() {
+        let margins       : CGFloat = 16
+        let repoImageSize : CGFloat = 60
+        let starImageSize : CGFloat = 14
+        let textHeight    : CGFloat = 22
+        
+        let cellBackgrounddConstraints = [
+            cellBackground.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: margins),
+            cellBackground.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4.5),
+            cellBackground.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -margins),
+            cellBackground.heightAnchor.constraint(equalToConstant: 92)
+        ]
+        let repoImageConstraints = [
+            repoImage.leadingAnchor.constraint(equalTo: cellBackground.leadingAnchor, constant: margins),
+            repoImage.topAnchor.constraint(equalTo: cellBackground.topAnchor, constant: margins),
+            repoImage.widthAnchor.constraint(equalToConstant: repoImageSize),
+            repoImage.heightAnchor.constraint(equalToConstant: repoImageSize)
+        ]
+        let repoTitleConstraints = [
+            repoTitle.leadingAnchor.constraint(equalTo: repoImage.trailingAnchor, constant: margins),
+            repoTitle.topAnchor.constraint(equalTo: cellBackground.topAnchor, constant: 26),
+            repoTitle.trailingAnchor.constraint(equalTo: cellBackground.trailingAnchor, constant: 30),
+            repoTitle.heightAnchor.constraint(equalToConstant: textHeight)
+        ]
+        let starImageConstraints = [
+            starImage.leadingAnchor.constraint(equalTo: repoImage.trailingAnchor, constant: margins),
+            starImage.topAnchor.constraint(equalTo: repoTitle.bottomAnchor, constant: 4),
+            starImage.widthAnchor.constraint(equalToConstant: starImageSize),
+            starImage.heightAnchor.constraint(equalToConstant: starImageSize)
+        ]
+        let starsTitleConstraints = [
+            starsTitle.leadingAnchor.constraint(equalTo: starImage.trailingAnchor, constant: 4),
+            starsTitle.topAnchor.constraint(equalTo: repoTitle.bottomAnchor, constant: 0),
+            starsTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -margins),
+            starsTitle.heightAnchor.constraint(equalToConstant: textHeight)
+        ]
+        NSLayoutConstraint.activate(cellBackgrounddConstraints)
+        NSLayoutConstraint.activate(repoImageConstraints)
+        NSLayoutConstraint.activate(repoTitleConstraints)
+        NSLayoutConstraint.activate(starImageConstraints)
+        NSLayoutConstraint.activate(starsTitleConstraints)
     }
     
+//MARK: === Init ===
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubviews()
+        applyConstraints()
     }
 
     required init?(coder: NSCoder) {
