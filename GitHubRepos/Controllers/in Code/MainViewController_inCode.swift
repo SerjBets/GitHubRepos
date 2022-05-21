@@ -7,13 +7,14 @@
 import UIKit
 
 class MainViewController_inCode: UIViewController {
-    var reposList = [Repo]() {
+    private var reposList = [Repo]() {
         didSet {
+            reposList.sort { $0.starsCount > $1.starsCount }
             tableView.reloadData()
         }
     }
     private var filteredRepos = [Repo]()
-    var isSearch : Bool = false
+    var isSearch = false
     
     //MARK: === UI Items ===
     private let searchTitle: UILabel = {
@@ -118,10 +119,15 @@ class MainViewController_inCode: UIViewController {
             switch results {
             case .success(let repos):
                 self.reposList = repos.items
+                self.tableView.hideActivityIndicator()
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    private func sortRepos(){
+        reposList.sort { $0.starsCount > $1.starsCount }
     }
 }
 
@@ -145,7 +151,7 @@ extension MainViewController_inCode: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.repoTableViewCell, for: indexPath)
                 as? RepoTableVIewCell_inCode else { return UITableViewCell() }
         var repo: Repo
-        if isSearch {
+        if isSearch && filteredRepos.count > indexPath.row  {
             repo = filteredRepos[indexPath.row]
         } else {
             repo = reposList[indexPath.row]
@@ -174,8 +180,8 @@ extension MainViewController_inCode {
             switch results {
             case .success(let repos):
                 self.reposList = repos.items
-                self.tableView.reloadData()
                 self.tableView.hideActivityIndicator()
+                self.tableView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -186,7 +192,7 @@ extension MainViewController_inCode {
 // MARK: === UISearchResultsUpdating Delegate ===
 extension MainViewController_inCode: UISearchBarDelegate{
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-           isSearch = true
+        isSearch = true
     }
        
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
@@ -195,8 +201,8 @@ extension MainViewController_inCode: UISearchBarDelegate{
     }
        
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-       searchBar.resignFirstResponder()
-       isSearch = false
+        searchBar.resignFirstResponder()
+        isSearch = false
     }
        
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -205,21 +211,13 @@ extension MainViewController_inCode: UISearchBarDelegate{
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.count == 0 {
-            isSearch = false
-            self.tableView.reloadData()
-        } else {
+        if searchText.count == 0 { isSearch = false } else {
             filteredRepos = reposList.filter({ (repo: Repo) -> Bool in
                 return repo.owner.login.lowercased().contains(searchText.lowercased())
             })
-            if(filteredRepos.count == 0){
-                isSearch = false
-            } else {
-                isSearch = true
-            }
-            self.tableView.hideActivityIndicator()
-            self.tableView.reloadData()
+            if(filteredRepos.count == 0) { isSearch = false } else { isSearch = true }
         }
+        filteredRepos.sort { $0.starsCount > $1.starsCount }
+        self.tableView.reloadData()
     }
-
 }
