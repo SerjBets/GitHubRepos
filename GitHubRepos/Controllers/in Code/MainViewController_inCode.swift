@@ -6,17 +6,12 @@
 
 import UIKit
 
-protocol MainViewController_inCodeDelegate {
-    func didTaptableViewCell(with model: Repo)
-}
-
 class MainViewController_inCode: UIViewController {
     var reposList = [Repo]() {
         didSet {
             tableView.reloadData()
         }
     }
-    var delegate: MainViewController_inCodeDelegate?
     
     //MARK: === UI Items ===
     private let searchTitle: UILabel = {
@@ -151,7 +146,6 @@ extension MainViewController_inCode: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repoItem = reposList[indexPath.row]
-        delegate?.didTaptableViewCell(with: repoItem)
         let vc = DetailViewController_inCode(model: repoItem)
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .custom

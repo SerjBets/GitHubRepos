@@ -357,9 +357,3 @@ extension DetailViewController_inCode {
         }
     }
 }
-
-extension DetailViewController_inCode: MainViewController_inCodeDelegate {
-    func didTaptableViewCell(with model: Repo) {
-        updateUI()
-    }
-}

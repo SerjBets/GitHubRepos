@@ -86,7 +86,7 @@ class CommitTableVIewCell_inCode: UITableViewCell {
         let commitNumberTitleConstraints = [
             commitNumberTitle.leadingAnchor.constraint(equalTo: commitNumBackground.leadingAnchor, constant: 14),
             commitNumberTitle.topAnchor.constraint(equalTo: commitNumBackground.topAnchor, constant: 8),
-            commitNumberTitle.trailingAnchor.constraint(equalTo: commitNumBackground.trailingAnchor, constant: -14),
+            commitNumberTitle.trailingAnchor.constraint(equalTo: commitNumBackground.trailingAnchor, constant: -12),
             commitNumberTitle.heightAnchor.constraint(equalToConstant: constantSize)
         ]
         let commitAuthorTitleConstraints = [
