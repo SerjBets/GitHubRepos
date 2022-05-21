@@ -12,6 +12,8 @@ class MainViewController_inCode: UIViewController {
             tableView.reloadData()
         }
     }
+    private var filteredRepos = [Repo]()
+    var isSearch : Bool = false
     
     //MARK: === UI Items ===
     private let searchTitle: UILabel = {
@@ -108,6 +110,7 @@ class MainViewController_inCode: UIViewController {
         tableView.emptyDataSetDelegate = self
         tableView.delegate = self
         tableView.dataSource = self
+        searchBar.delegate = self
         tableView.showActivityIndicator()
         
         //Get repos
@@ -115,13 +118,11 @@ class MainViewController_inCode: UIViewController {
             switch results {
             case .success(let repos):
                 self.reposList = repos.items
-                //debugPrint(repos)
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
-    
 }
 
 // === MARK: - UITableViewDelegate ===
@@ -134,13 +135,22 @@ extension MainViewController_inCode: UITableViewDelegate {
 // === MARK: - UITableViewDataSource ===
 extension MainViewController_inCode: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isSearch {
+            return filteredRepos.count
+        }
         return reposList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.repoTableViewCell, for: indexPath)
                 as? RepoTableVIewCell_inCode else { return UITableViewCell() }
-        cell.configureCell(with: reposList[indexPath.row])
+        var repo: Repo
+         if isSearch {
+             repo = filteredRepos[indexPath.row]
+         } else {
+             repo = reposList[indexPath.row]
+         }
+        cell.configureCell(with: repo)
         return cell
     }
     
@@ -154,9 +164,9 @@ extension MainViewController_inCode: UITableViewDataSource {
     }
     
 }
+
 // === MARK: - DZNEmptyDataSet ===
 extension MainViewController_inCode {
-
     func emptyDataSet(_ scrollView: UIScrollView, didTap button: UIButton) {
         self.tableView.showActivityIndicator()
         //Get repos
@@ -166,10 +176,48 @@ extension MainViewController_inCode {
                 self.reposList = repos.items
                 self.tableView.reloadData()
                 self.tableView.hideActivityIndicator()
-                //debugPrint(repos)
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
+}
+
+// MARK: === UISearchResultsUpdating Delegate ===
+extension MainViewController_inCode: UISearchBarDelegate{
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+           isSearch = true
+    }
+       
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+           searchBar.resignFirstResponder()
+           isSearch = false
+    }
+       
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+           searchBar.resignFirstResponder()
+           isSearch = false
+    }
+       
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+           searchBar.resignFirstResponder()
+           isSearch = false
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.count == 0 {
+            isSearch = false
+            self.tableView.reloadData()
+        } else {
+            filteredRepos = reposList.filter({ (repo: Repo) -> Bool in
+                return repo.owner.login.lowercased().contains(searchText.lowercased())
+            })
+            if(filteredRepos.count == 0){
+                isSearch = false
+            } else {
+                isSearch = true
+            }
+            self.tableView.reloadData()
+        }
+    }
+
 }

@@ -209,10 +209,10 @@ class DetailViewController_inCode: UIViewController, SFSafariViewControllerDeleg
     private func makeBackButton() -> UIButton {
         let backButtonImage = UIImage(systemName: "chevron.backward")?.withRenderingMode(.alwaysTemplate)
         let backButton = UIButton(type: .custom)
-        backButton.tintColor = .systemBackground
+        backButton.tintColor = .black
         backButton.setImage(backButtonImage, for: .normal)
         backButton.setTitle("Back", for: .normal)
-        backButton.setTitleColor(.systemBackground, for: .normal)
+        backButton.setTitleColor(.black, for: .normal)
         backButton.addTarget(self, action: #selector(self.backButtonPressed), for: .touchUpInside)
         return backButton
     }
