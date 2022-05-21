@@ -145,11 +145,11 @@ extension MainViewController_inCode: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.repoTableViewCell, for: indexPath)
                 as? RepoTableVIewCell_inCode else { return UITableViewCell() }
         var repo: Repo
-         if isSearch {
-             repo = filteredRepos[indexPath.row]
-         } else {
-             repo = reposList[indexPath.row]
-         }
+        if isSearch {
+            repo = filteredRepos[indexPath.row]
+        } else {
+            repo = reposList[indexPath.row]
+        }
         cell.configureCell(with: repo)
         return cell
     }
@@ -190,19 +190,20 @@ extension MainViewController_inCode: UISearchBarDelegate{
     }
        
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-           searchBar.resignFirstResponder()
-           isSearch = false
+       searchBar.resignFirstResponder()
+       isSearch = false
     }
        
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-           searchBar.resignFirstResponder()
-           isSearch = false
+       searchBar.resignFirstResponder()
+       isSearch = false
     }
        
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-           searchBar.resignFirstResponder()
-           isSearch = false
+        searchBar.resignFirstResponder()
+        isSearch = false
     }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.count == 0 {
             isSearch = false
@@ -216,6 +217,7 @@ extension MainViewController_inCode: UISearchBarDelegate{
             } else {
                 isSearch = true
             }
+            self.tableView.hideActivityIndicator()
             self.tableView.reloadData()
         }
     }
