@@ -24,6 +24,7 @@ class MainViewController_inCode: UIViewController {
         label.text = "Search"
         label.numberOfLines = 0
         label.clipsToBounds = true
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: customFonts.displayBold.rawValue, size: 34)
         return label
     }()
@@ -31,6 +32,7 @@ class MainViewController_inCode: UIViewController {
     private let searchBar: UISearchBar = {
         let bar = UISearchBar()
         bar.placeholder = "Search"
+        bar.translatesAutoresizingMaskIntoConstraints = false
         return bar
     }()
     
@@ -38,12 +40,14 @@ class MainViewController_inCode: UIViewController {
         let label = UILabel()
         label.text = "Repositories"
         label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: customFonts.displayBold.rawValue, size: 22)
         return label
     }()
     
     private let tableView: UITableView = {
         let table = UITableView()
+        table.translatesAutoresizingMaskIntoConstraints = false
         table.register(RepoTableVIewCell_inCode.self, forCellReuseIdentifier: RepoTableVIewCell_inCode.identifier)
         return table
     }()
@@ -54,7 +58,53 @@ class MainViewController_inCode: UIViewController {
         view.addSubview(tableViewTitle)
         view.addSubview(tableView)
     }
+    
+//MARK: === Constraints ===
+    private func applyConstraints() {
+        let margins: CGFloat = 16
+        
+        let searchTitleConstraints = [
+            searchTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: margins),
+            searchTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 89),
+            searchTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -margins),
+            searchTitle.heightAnchor.constraint(equalToConstant: 41)
+        ]
+        let searchBarConstraints = [
+            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: margins),
+            searchBar.topAnchor.constraint(equalTo: searchTitle.bottomAnchor, constant: 14),
+            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -margins),
+            searchBar.heightAnchor.constraint(equalToConstant: 36)
+        ]
+        let tableViewTitleConstraints = [
+            tableViewTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: margins),
+            tableViewTitle.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 30),
+            tableViewTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -margins),
+            tableViewTitle.heightAnchor.constraint(equalToConstant: 28)
+        ]
+        let tableViewConstraints = [
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: margins),
+            tableView.topAnchor.constraint(equalTo: tableViewTitle.bottomAnchor, constant: 18),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -margins),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ]
+            NSLayoutConstraint.activate(searchTitleConstraints)
+            NSLayoutConstraint.activate(searchBarConstraints)
+            NSLayoutConstraint.activate(tableViewTitleConstraints)
+            NSLayoutConstraint.activate(tableViewConstraints)
+    }
+    
+// MARK: === Init ===
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        addSubviews()
+        applyConstraints()
+    }
 
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
 //MARK: === ViewController LifeCycle ===
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +114,6 @@ class MainViewController_inCode: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.showActivityIndicator()
-        addSubviews()
         
         //Get repos
         APICaller.shared.fetchStarsRepos(with: Constants.reposUrlString) { results in
@@ -78,26 +127,6 @@ class MainViewController_inCode: UIViewController {
         }
     }
     
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        searchTitle.frame    = CGRect(x: 16,
-                                      y: 89,
-                                      width: view.width - 32,
-                                      height: 41)
-        searchBar.frame      = CGRect(x: 16,
-                                      y: searchTitle.bottom + 14,
-                                      width: view.width - 32,
-                                      height: 36)
-        tableViewTitle.frame = CGRect(x: 16,
-                                      y: searchBar.bottom + 30,
-                                      width: view.width - 32,
-                                      height: 28)
-        tableView.frame      = CGRect(x: 0,
-                                      y: tableViewTitle.bottom,
-                                      width: view.width,
-                                      height: view.height - tableViewTitle.bottom)
-    }
 }
 
 // === MARK: - UITableViewDelegate ===
@@ -136,7 +165,6 @@ extension MainViewController_inCode {
 
     func emptyDataSet(_ scrollView: UIScrollView, didTap button: UIButton) {
         self.tableView.showActivityIndicator()
-        
         //Get repos
         APICaller.shared.fetchStarsRepos(with: Constants.reposUrlString) { results in
             switch results {

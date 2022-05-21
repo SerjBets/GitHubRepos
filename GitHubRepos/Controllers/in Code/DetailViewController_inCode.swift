@@ -251,14 +251,13 @@ class DetailViewController_inCode: UIViewController, SFSafariViewControllerDeleg
         tableView.delegate = self
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
+        tableView.showActivityIndicator()
         getCommits()
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: makeBackButton())
-        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: makeBackButton())
         shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         viewOnlineButton.addTarget(self, action: #selector(viewOnlineButtontapped), for: .touchUpInside)
     }
     
-
     private func getCommits() {
         APICaller.shared.fetchCommits(with: Constants.commitsUrlString) { results in
             switch results {
