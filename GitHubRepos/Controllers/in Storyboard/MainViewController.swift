@@ -28,13 +28,11 @@ class MainViewController: UIViewController  {
         tableView.dataSource = self
         tableView.showActivityIndicator()
         registerTableViewCells()
-
         //Get repos
         APICaller.shared.fetchStarsRepos(with: Constants.reposUrlString) { results in
             switch results {
             case .success(let repos):
                 self.reposList = repos.items
-                //debugPrint(repos)
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -64,10 +62,7 @@ extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 // UI tableViewCell in Storyboard in xib
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.MainNibName, for: indexPath)
-//                as? RepoTableViewCell else { return UITableViewCell() }
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RepoTableVIewCell_inCode.identifier, for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.repoTableViewCell, for: indexPath)
                 as? RepoTableVIewCell_inCode else { return UITableViewCell() }
         cell.configureCell(with: reposList[indexPath.row])
         return cell
@@ -81,11 +76,8 @@ extension MainViewController: UITableViewDataSource {
     
     private func registerTableViewCells() {
 // UI tableViewCell in Storyboard in xib
-//        let cellNib = UINib(nibName: Constants.MainNibName, bundle: nil)
-//        self.tableView.register(cellNib, forCellReuseIdentifier: RepoTableViewCell.identifier)
-        
         self.tableView.register(RepoTableVIewCell_inCode.self,
-                                forCellReuseIdentifier: RepoTableVIewCell_inCode.identifier)
+                                forCellReuseIdentifier: Constants.repoTableViewCell)
     }
 }
 // === MARK: - DZNEmptyDataSet ===
@@ -101,7 +93,6 @@ extension MainViewController {
                 self.reposList = repos.items
                 self.tableView.reloadData()
                 self.tableView.hideActivityIndicator()
-                //debugPrint(repos)
             case .failure(let error):
                 print(error.localizedDescription)
             }

@@ -125,6 +125,14 @@ class CommitTableVIewCell_inCode: UITableViewCell {
         fatalError()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        commitAuthorTitle.text  = ""
+        authorEmailTitle.text   = ""
+        commitNumberTitle.text  = ""
+        commitMessageTitle.text = ""
+    }
+    
     public func configureCell(with model: Commit, index: IndexPath)  {
         commitAuthorTitle.text  = model.commit.author.name.uppercased()
         authorEmailTitle.text   = model.commit.author.email

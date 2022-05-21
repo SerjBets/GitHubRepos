@@ -9,7 +9,6 @@ import UIKit
 import SDWebImage
 
 class RepoTableVIewCell_inCode: UITableViewCell {
-     static let identifier = "RepoTableVIewCell_inCode"
     
 //MARK: === UI Items ===
      private let cellBackground: UIButton = {
@@ -122,6 +121,14 @@ class RepoTableVIewCell_inCode: UITableViewCell {
 
     required init?(coder: NSCoder) {
         fatalError()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        repoImage.image = nil
+        repoTitle.text  = ""
+        starImage.image = nil
+        starsTitle.text = ""
     }
     
     public func configureCell(with model: Repo) {

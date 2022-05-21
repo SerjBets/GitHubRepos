@@ -43,7 +43,7 @@ class MainViewController_inCode: UIViewController {
     private let tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
-        table.register(RepoTableVIewCell_inCode.self, forCellReuseIdentifier: RepoTableVIewCell_inCode.identifier)
+        table.register(RepoTableVIewCell_inCode.self, forCellReuseIdentifier: Constants.repoTableViewCell)
         return table
     }()
     
@@ -138,7 +138,7 @@ extension MainViewController_inCode: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RepoTableVIewCell_inCode.identifier, for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.repoTableViewCell, for: indexPath)
                 as? RepoTableVIewCell_inCode else { return UITableViewCell() }
         cell.configureCell(with: reposList[indexPath.row])
         return cell

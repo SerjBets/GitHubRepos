@@ -16,6 +16,7 @@ struct Constants {
     static let reposUrlString = "https://api.github.com/search/repositories?"
     static let commitsUrlString = "https://api.github.com/repos/freeCodeCamp/freeCodeCamp/commits"
     static let commitTableViewCell = "CommitTableVIewCell_inCode"
+    static let repoTableViewCell = "RepoTableViewCell_inCode"
 }
 
 enum customFonts {

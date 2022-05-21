@@ -38,7 +38,6 @@ class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
         let urlToShare = repoItem.htmlUrl
         let shareItems = [nameToShare, urlToShare] as [Any]
         let activityVC = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
-
         //Apps to exclude sharing to
         activityVC.excludedActivityTypes = [
             UIActivity.ActivityType.airDrop,
@@ -71,9 +70,7 @@ class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
         APICaller.shared.fetchCommits(with: Constants.commitsUrlString) { results in
             switch results {
             case .success(let commits):
-                debugPrint(commits)
                 self.commitsList = commits
-                debugPrint(commits)
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -94,7 +91,7 @@ class DetailViewController: UIViewController, SFSafariViewControllerDelegate {
 // === MARK: - UITableViewDelegate ===
 extension DetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 111
+        return 101
     }
 }
 
@@ -106,9 +103,6 @@ extension DetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 // UI tableViewCell in Storyboard in xib
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.DetailNibName, for: indexPath)
-//                as? CommitTableViewCell else { return UITableViewCell() }
-                
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.commitTableViewCell, for: indexPath)
                 as? CommitTableVIewCell_inCode else { return UITableViewCell() }
         
@@ -123,9 +117,6 @@ extension DetailViewController: UITableViewDataSource {
     
     private func registerTableViewCells() {
 // UI tableViewCell in Storyboard in xib
-//        let cellNib = UINib(nibName: Constants.DetailNibName, bundle: nil)
-//        tableView.register(cellNib, forCellReuseIdentifier: CommitTableViewCell.identifier)
-        
         self.tableView.register(CommitTableVIewCell_inCode.self,
                                 forCellReuseIdentifier: Constants.commitTableViewCell)
     }
@@ -154,11 +145,9 @@ extension DetailViewController {
         APICaller.shared.fetchCommits(with: Constants.commitsUrlString) { results in
             switch results {
             case .success(let commits):
-                debugPrint(commits)
                 self.commitsList = commits
                 self.tableView.reloadData()
                 self.tableView.hideActivityIndicator()
-                debugPrint(commits)
             case .failure(let error):
                 print(error.localizedDescription)
             }

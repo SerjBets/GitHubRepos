@@ -8,7 +8,6 @@ import UIKit
 import SDWebImage
 
 class RepoTableViewCell: UITableViewCell {
-    static let identifier = "RepoTableViewCell"
     
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var repoTitle: UILabel!

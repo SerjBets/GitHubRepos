@@ -7,8 +7,7 @@
 import UIKit
 
 class CommitTableViewCell: UITableViewCell {
-    static let identifier = "CommitTableViewCell"
-
+    
     @IBOutlet weak var commitNumber: UILabel!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userEmail: UILabel!
