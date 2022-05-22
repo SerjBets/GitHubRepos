@@ -48,7 +48,7 @@ extension UITableView {
     }
 }
 
-// MARK: === UIView extension ===
+// MARK: === UIView sizes extension ===
 extension UIView {
 
     public var width: CGFloat {
@@ -73,5 +73,18 @@ extension UIView {
 
     public var right: CGFloat {
         return frame.origin.x + frame.size.width
+    }
+}
+
+//MARK: === hideKeyboard extension ===
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

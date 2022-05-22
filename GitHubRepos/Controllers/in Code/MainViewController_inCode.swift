@@ -107,14 +107,12 @@ class MainViewController_inCode: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        tableView.emptyDataSetSource = self
-        tableView.emptyDataSetDelegate = self
-        tableView.delegate = self
-        tableView.dataSource = self
-        searchBar.delegate = self
-        tableView.showActivityIndicator()
+        tableView.keyboardDismissMode = .onDrag
         
-        //Get repos
+        addDelegates()
+        tableView.showActivityIndicator()
+        hideKeyboardWhenTappedAround()
+
         APICaller.shared.fetchStarsRepos(with: Constants.reposUrlString) { results in
             switch results {
             case .success(let repos):
@@ -126,8 +124,12 @@ class MainViewController_inCode: UIViewController {
         }
     }
     
-    private func sortRepos(){
-        reposList.sort { $0.starsCount > $1.starsCount }
+    private func addDelegates() {
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        tableView.delegate = self
+        tableView.dataSource = self
+        searchBar.delegate = self
     }
 }
 
@@ -141,22 +143,14 @@ extension MainViewController_inCode: UITableViewDelegate {
 // === MARK: - UITableViewDataSource ===
 extension MainViewController_inCode: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isSearch {
-            return filteredRepos.count
-        }
-        return reposList.count
+        if filteredRepos.count == 0 { return reposList.count } else { return filteredRepos.count }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.repoTableViewCell, for: indexPath)
                 as? RepoTableVIewCell_inCode else { return UITableViewCell() }
-        var repo: Repo
-        if isSearch && filteredRepos.count > indexPath.row  {
-            repo = filteredRepos[indexPath.row]
-        } else {
-            repo = reposList[indexPath.row]
-        }
-        cell.configureCell(with: repo)
+        if filteredRepos.count == 0 { filteredRepos = reposList }
+        cell.configureCell(with: filteredRepos[indexPath.row])
         return cell
     }
     
@@ -191,31 +185,21 @@ extension MainViewController_inCode {
 
 // MARK: === UISearchResultsUpdating Delegate ===
 extension MainViewController_inCode: UISearchBarDelegate{
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        isSearch = true
-    }
-       
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-       searchBar.resignFirstResponder()
-       isSearch = false
-    }
-       
+
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        isSearch = false
     }
-       
+
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        isSearch = false
+        
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.count == 0 { isSearch = false } else {
+        if searchText.count == 0 { filteredRepos = reposList } else {
             filteredRepos = reposList.filter({ (repo: Repo) -> Bool in
                 return repo.owner.login.lowercased().contains(searchText.lowercased())
             })
-            if(filteredRepos.count == 0) { isSearch = false } else { isSearch = true }
         }
         filteredRepos.sort { $0.starsCount > $1.starsCount }
         self.tableView.reloadData()

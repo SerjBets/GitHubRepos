@@ -262,7 +262,6 @@ class DetailViewController_inCode: UIViewController, SFSafariViewControllerDeleg
         APICaller.shared.fetchCommits(with: Constants.commitsUrlString) { results in
             switch results {
             case .success(let commits):
-                //debugPrint(commits)
                 self.commitsList = commits
             case .failure(let error):
                 print(error.localizedDescription)
@@ -347,7 +346,6 @@ extension DetailViewController_inCode {
         APICaller.shared.fetchCommits(with: Constants.commitsUrlString) { results in
             switch results {
             case .success(let commits):
-                //debugPrint(commits)
                 self.commitsList = commits
                 self.tableView.reloadData()
                 self.tableView.hideActivityIndicator()
