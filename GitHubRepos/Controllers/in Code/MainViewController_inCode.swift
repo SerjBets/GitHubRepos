@@ -6,7 +6,9 @@
 
 import UIKit
 
-class MainViewController_inCode: UIViewController {
+class MainViewController_inCode: UIViewController, CoordinatorBoard {
+    weak var mainCoordinator : MainCoordinator?
+    
     private var reposList = [Repo]() {
         didSet {
             reposList.sort { $0.starsCount > $1.starsCount }
@@ -156,10 +158,7 @@ extension MainViewController_inCode: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repoItem = reposList[indexPath.row]
-        let vc = DetailViewController_inCode(model: repoItem)
-        let navVC = UINavigationController(rootViewController: vc)
-        navVC.modalPresentationStyle = .custom
-        present(navVC, animated: true)
+        mainCoordinator?.navigateToDetailVC(with: repoItem)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

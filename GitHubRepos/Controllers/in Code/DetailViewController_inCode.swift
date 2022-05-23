@@ -9,8 +9,9 @@ import SDWebImage
 import SafariServices
 import SwiftUI
 
-class DetailViewController_inCode: UIViewController, SFSafariViewControllerDelegate {
-
+class DetailViewController_inCode: UIViewController, CoordinatorBoard, SFSafariViewControllerDelegate {
+    weak var mainCoordinator : MainCoordinator?
+    
     var repoItem: Repo!
     var commitsList = [Commit]() {
         didSet {
@@ -220,7 +221,8 @@ class DetailViewController_inCode: UIViewController, SFSafariViewControllerDeleg
 //MARK: === Buttons Actions ===
     
     @objc private func backButtonPressed() {
-        dismiss(animated: true, completion: nil)
+        //dismiss(animated: true, completion: nil)
+        mainCoordinator?.configureRootViewController()
     }
     
     @objc private func shareButtonTapped() {
@@ -232,6 +234,10 @@ class DetailViewController_inCode: UIViewController, SFSafariViewControllerDeleg
     }
     
 // MARK: === Init ===
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
     init(model: Repo) {
         super.init(nibName: nil, bundle: nil)
         self.repoItem = model
