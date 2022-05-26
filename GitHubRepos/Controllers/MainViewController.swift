@@ -6,7 +6,7 @@
 
 import UIKit
 
-class MainViewController_inCode: UIViewController, CoordinatorBoard {
+class MainViewController: UIViewController, CoordinatorBoard {
     weak var mainCoordinator : MainCoordinator?
     
     private var reposList = [Repo]() {
@@ -15,8 +15,8 @@ class MainViewController_inCode: UIViewController, CoordinatorBoard {
             tableView.reloadData()
         }
     }
+    
     private var filteredRepos = [Repo]()
-    var isSearch = false
     
     //MARK: === UI Items ===
     private let searchTitle: UILabel = {
@@ -25,7 +25,7 @@ class MainViewController_inCode: UIViewController, CoordinatorBoard {
         label.numberOfLines = 0
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: customFonts.displayBold.rawValue, size: 34)
+        label.font = UIFont.systemFont(ofSize: 34, weight: .bold)
         return label
     }()
     
@@ -41,14 +41,14 @@ class MainViewController_inCode: UIViewController, CoordinatorBoard {
         label.text = "Repositories"
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: customFonts.displayBold.rawValue, size: 22)
+        label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         return label
     }()
     
     private let tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
-        table.register(RepoTableVIewCell_inCode.self, forCellReuseIdentifier: Constants.repoTableViewCell)
+        table.register(RepoTableVIewCell.self, forCellReuseIdentifier: Identifiers.repoTableViewCell)
         return table
     }()
     
@@ -115,7 +115,7 @@ class MainViewController_inCode: UIViewController, CoordinatorBoard {
         tableView.showActivityIndicator()
         hideKeyboardWhenTappedAround()
 
-        APICaller.shared.fetchStarsRepos(with: Constants.reposUrlString) { results in
+        APICaller.shared.fetchStarsRepos(with: Endpoints.reposUrlString) { results in
             switch results {
             case .success(let repos):
                 self.reposList = repos.items
@@ -136,21 +136,21 @@ class MainViewController_inCode: UIViewController, CoordinatorBoard {
 }
 
 // === MARK: - UITableViewDelegate ===
-extension MainViewController_inCode: UITableViewDelegate {
+extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 101
     }
 }
 
 // === MARK: - UITableViewDataSource ===
-extension MainViewController_inCode: UITableViewDataSource {
+extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if filteredRepos.count == 0 { return reposList.count } else { return filteredRepos.count }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.repoTableViewCell, for: indexPath)
-                as? RepoTableVIewCell_inCode else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.repoTableViewCell, for: indexPath)
+                as? RepoTableVIewCell else { return UITableViewCell() }
         if filteredRepos.count == 0 { filteredRepos = reposList }
         cell.configureCell(with: filteredRepos[indexPath.row])
         return cell
@@ -165,11 +165,11 @@ extension MainViewController_inCode: UITableViewDataSource {
 }
 
 // === MARK: - DZNEmptyDataSet ===
-extension MainViewController_inCode {
+extension MainViewController {
     func emptyDataSet(_ scrollView: UIScrollView, didTap button: UIButton) {
         self.tableView.showActivityIndicator()
         //Get repos
-        APICaller.shared.fetchStarsRepos(with: Constants.reposUrlString) { results in
+        APICaller.shared.fetchStarsRepos(with: Endpoints.reposUrlString) { results in
             switch results {
             case .success(let repos):
                 self.reposList = repos.items
@@ -183,7 +183,7 @@ extension MainViewController_inCode {
 }
 
 // MARK: === UISearchResultsUpdating Delegate ===
-extension MainViewController_inCode: UISearchBarDelegate{
+extension MainViewController: UISearchBarDelegate{
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()

@@ -8,7 +8,7 @@ import Foundation
 import UIKit
 import SDWebImage
 
-class RepoTableVIewCell_inCode: UITableViewCell {
+class RepoTableVIewCell: UITableViewCell {
     
 //MARK: === UI Items ===
      private let cellBackground: UIButton = {

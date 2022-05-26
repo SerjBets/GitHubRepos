@@ -9,7 +9,7 @@ import SDWebImage
 import SafariServices
 import SwiftUI
 
-class DetailViewController_inCode: UIViewController, CoordinatorBoard, SFSafariViewControllerDelegate {
+class DetailViewController: UIViewController, CoordinatorBoard, SFSafariViewControllerDelegate {
     weak var mainCoordinator : MainCoordinator?
     
     var repoItem: Repo!
@@ -35,7 +35,7 @@ class DetailViewController_inCode: UIViewController, CoordinatorBoard, SFSafariV
         label.text = "REPO BY"
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: customFonts.textSemibold.rawValue, size: 15)
+        label.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         label.layer.opacity = 0.6
         return label
     }()
@@ -45,7 +45,7 @@ class DetailViewController_inCode: UIViewController, CoordinatorBoard, SFSafariV
         label.text = "Repo Auther Name"
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: customFonts.displayBold.rawValue, size: 28)
+        label.font = UIFont.systemFont(ofSize: 28, weight: .bold)
         return label
     }()
     
@@ -63,7 +63,7 @@ class DetailViewController_inCode: UIViewController, CoordinatorBoard, SFSafariV
         label.text = "8877"
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: customFonts.textRegular.rawValue, size: 13)
+        label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         label.layer.opacity = 0.5
         return label
     }()
@@ -73,7 +73,7 @@ class DetailViewController_inCode: UIViewController, CoordinatorBoard, SFSafariV
         label.text = "Repo Title"
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: customFonts.textSemibold.rawValue, size: 17)
+        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         return label
     }()
     
@@ -82,7 +82,7 @@ class DetailViewController_inCode: UIViewController, CoordinatorBoard, SFSafariV
         button.backgroundColor = customColors.btnBackground.rawValue
         button.layer.cornerRadius = 17
         button.setTitle("VIEW ONlINE".uppercased(), for: .normal)
-        button.titleLabel?.font =  UIFont(name: customFonts.textSemibold.rawValue, size: 15)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         button.setTitleColor(customColors.btnTitle.rawValue, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -93,14 +93,14 @@ class DetailViewController_inCode: UIViewController, CoordinatorBoard, SFSafariV
         label.text = "Commit History"
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: customFonts.displayBold.rawValue, size: 22)
+        label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         return label
     }()
     
     private let tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
-        table.register(CommitTableVIewCell_inCode.self, forCellReuseIdentifier: Constants.commitTableViewCell)
+        table.register(CommitTableVIewCell.self, forCellReuseIdentifier: Identifiers.commitTableViewCell)
         table.isScrollEnabled = false
         table.allowsSelection = false
         return table
@@ -265,7 +265,7 @@ class DetailViewController_inCode: UIViewController, CoordinatorBoard, SFSafariV
     }
     
     private func getCommits() {
-        APICaller.shared.fetchCommits(with: Constants.commitsUrlString) { results in
+        APICaller.shared.fetchCommits(with: Endpoints.commitsUrlString) { results in
             switch results {
             case .success(let commits):
                 self.commitsList = commits
@@ -307,21 +307,21 @@ class DetailViewController_inCode: UIViewController, CoordinatorBoard, SFSafariV
 }
 
 // === MARK: - UITableViewDelegate ===
-extension DetailViewController_inCode: UITableViewDelegate {
+extension DetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 111
     }
 }
 
 // === MARK: - UITableViewDataSource ===
-extension DetailViewController_inCode: UITableViewDataSource {
+extension DetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return commitsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.commitTableViewCell, for: indexPath)
-                as? CommitTableVIewCell_inCode else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.commitTableViewCell, for: indexPath)
+                as? CommitTableVIewCell else { return UITableViewCell() }
         cell.configureCell(with: commitsList[indexPath.row], index: indexPath)
         if indexPath.row >= 3 {
             return UITableViewCell()
@@ -331,7 +331,7 @@ extension DetailViewController_inCode: UITableViewDataSource {
 }
 
 // === MARK: - SafariService ===
-extension DetailViewController_inCode {
+extension DetailViewController {
     
     func showLinksClicked() {
         let safariVC = SFSafariViewController(url: repoItem.owner.htmlUrl)
@@ -345,11 +345,11 @@ extension DetailViewController_inCode {
 }
 
 // === MARK: - DZNEmptyDataSet ===
-extension DetailViewController_inCode {
+extension DetailViewController {
 
     func emptyDataSet(_ scrollView: UIScrollView, didTap button: UIButton) {
         self.tableView.showActivityIndicator()
-        APICaller.shared.fetchCommits(with: Constants.commitsUrlString) { results in
+        APICaller.shared.fetchCommits(with: Endpoints.commitsUrlString) { results in
             switch results {
             case .success(let commits):
                 self.commitsList = commits

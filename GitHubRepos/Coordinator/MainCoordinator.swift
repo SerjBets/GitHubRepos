@@ -1,9 +1,8 @@
 //
 //  MainCoordinator.swift
 //  GitHubRepos
-//
-//  Created by Сергей Бец on 23.05.2022.
-//
+//  Created by Serhii Bets on 13.04.2022.
+//  Copyright by Serhii Bets. All rights reserved.
 
 import Foundation
 import UIKit
@@ -17,13 +16,13 @@ class MainCoordinator : Coordinator {
     }
 
     func configureRootViewController() {
-        let home = MainViewController_inCode()
+        let home = MainViewController()
         home.mainCoordinator = self
         self.navigationController.pushViewController(home, animated: false)
     }
 
     func navigateToDetailVC(with model: Repo) {
-        let detailVC = DetailViewController_inCode(model: model)
+        let detailVC = DetailViewController(model: model)
         detailVC.mainCoordinator = self
         self.navigationController.pushViewController(detailVC, animated: true)
     }

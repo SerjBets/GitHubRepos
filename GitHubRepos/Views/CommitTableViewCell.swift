@@ -8,7 +8,7 @@ import Foundation
 import UIKit
 import SDWebImage
 
-class CommitTableVIewCell_inCode: UITableViewCell {
+class CommitTableVIewCell: UITableViewCell {
     
 //MARK: === UI Items ===
     private let commitNumberTitle: UILabel = {
@@ -16,7 +16,7 @@ class CommitTableVIewCell_inCode: UITableViewCell {
         label.text = "1"
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: customFonts.textMedium.rawValue, size: 17)
+        label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         return label
     }()
     
@@ -26,7 +26,7 @@ class CommitTableVIewCell_inCode: UITableViewCell {
         label.textColor = .blue
         label.translatesAutoresizingMaskIntoConstraints = false
         label.clipsToBounds = true
-        label.font = UIFont(name: customFonts.textSemibold.rawValue, size: 11)
+        label.font = UIFont.systemFont(ofSize: 11, weight: .semibold)
         return label
     }()
     
@@ -35,7 +35,7 @@ class CommitTableVIewCell_inCode: UITableViewCell {
         label.text = "email@authorname.com"
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: customFonts.textRegular.rawValue, size: 17)
+        label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         label.clipsToBounds = true
         return label
     }()
@@ -46,7 +46,7 @@ class CommitTableVIewCell_inCode: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.lineBreakMode = .byWordWrapping
         label.text = "This is commit message that need to fold over to the next line"
-        label.font = UIFont(name: customFonts.textRegular.rawValue, size: 17)
+        label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         label.clipsToBounds = true
         return label
     }()
