@@ -21,10 +21,8 @@
 		1EB05CB32838F77C0096D4EF /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB05CB22838F77C0096D4EF /* Identifiers.swift */; };
 		1EE3EE232841580B003406F6 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE3EE222841580B003406F6 /* MainView.swift */; };
 		1EE3EE2528415D16003406F6 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE3EE2428415D16003406F6 /* DetailView.swift */; };
-		1EE3EE2828420426003406F6 /* CommitsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE3EE2728420426003406F6 /* CommitsViewModel.swift */; };
 		1EE3EE2B2842048E003406F6 /* UIViewcontroller + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE3EE2A2842048E003406F6 /* UIViewcontroller + Extension.swift */; };
 		1EE3EE2D284204CA003406F6 /* UITableView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE3EE2C284204CA003406F6 /* UITableView + Extension.swift */; };
-		1EE3EE2F284207AD003406F6 /* ReposViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE3EE2E284207AD003406F6 /* ReposViewModel.swift */; };
 		1EF451C4283642FB0049A7F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451C3283642FB0049A7F7 /* AppDelegate.swift */; };
 		1EF451C6283642FB0049A7F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF451C5283642FB0049A7F7 /* SceneDelegate.swift */; };
 		1EF451CD283642FE0049A7F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EF451CC283642FE0049A7F7 /* Assets.xcassets */; };
@@ -53,10 +51,8 @@
 		1EB05CB22838F77C0096D4EF /* Identifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiers.swift; sourceTree = "<group>"; };
 		1EE3EE222841580B003406F6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		1EE3EE2428415D16003406F6 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
-		1EE3EE2728420426003406F6 /* CommitsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitsViewModel.swift; sourceTree = "<group>"; };
 		1EE3EE2A2842048E003406F6 /* UIViewcontroller + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewcontroller + Extension.swift"; sourceTree = "<group>"; };
 		1EE3EE2C284204CA003406F6 /* UITableView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + Extension.swift"; sourceTree = "<group>"; };
-		1EE3EE2E284207AD003406F6 /* ReposViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposViewModel.swift; sourceTree = "<group>"; };
 		1EF451C0283642FB0049A7F7 /* GitHubRepos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubRepos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EF451C3283642FB0049A7F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EF451C5283642FB0049A7F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,15 +116,6 @@
 			path = TableViewCell;
 			sourceTree = "<group>";
 		};
-		1EE3EE2628420407003406F6 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				1EE3EE2728420426003406F6 /* CommitsViewModel.swift */,
-				1EE3EE2E284207AD003406F6 /* ReposViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		1EE3EE2928420460003406F6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,7 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				1EE3EE2928420460003406F6 /* Extensions */,
-				1EE3EE2628420407003406F6 /* ViewModel */,
 				1E7BC645283FCCBC0069E777 /* Constants */,
 				1E4EB3D4283BED64001692E5 /* Coordinator */,
 				1EF451E8283648410049A7F7 /* Services */,
@@ -322,13 +308,11 @@
 				1EF4520128364B270049A7F7 /* UIView + Extension.swift in Sources */,
 				1EF451F9283649CE0049A7F7 /* CommitModel.swift in Sources */,
 				1E71A5802836970C00F81844 /* CommitTableViewCell.swift in Sources */,
-				1EE3EE2828420426003406F6 /* CommitsViewModel.swift in Sources */,
 				1EE3EE2528415D16003406F6 /* DetailView.swift in Sources */,
 				1E7BC64A283FCCE60069E777 /* Custom Colors.swift in Sources */,
 				1E4EB3DA283BEDEF001692E5 /* CoordinatorBoard.swift in Sources */,
 				1E7BC650283FCD7A0069E777 /* UserModel.swift in Sources */,
 				1EE3EE2B2842048E003406F6 /* UIViewcontroller + Extension.swift in Sources */,
-				1EE3EE2F284207AD003406F6 /* ReposViewModel.swift in Sources */,
 				1EF451C6283642FB0049A7F7 /* SceneDelegate.swift in Sources */,
 				1EF451F5283649690049A7F7 /* APICaller.swift in Sources */,
 				1E71A5892836BA7D00F81844 /* MainViewController.swift in Sources */,
