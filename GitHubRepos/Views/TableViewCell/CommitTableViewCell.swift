@@ -77,41 +77,32 @@ class CommitTableVIewCell: UITableViewCell {
         let margins                   : CGFloat = 16
         let circleBackgroundImageSize : CGFloat = 36
         
-        let commitNumBackgroundConstraints = [
+        NSLayoutConstraint.activate([
             commitNumBackground.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: constantSize),
             commitNumBackground.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 26),
             commitNumBackground.widthAnchor.constraint(equalToConstant: circleBackgroundImageSize),
-            commitNumBackground.heightAnchor.constraint(equalToConstant: circleBackgroundImageSize)
-        ]
-        let commitNumberTitleConstraints = [
+            commitNumBackground.heightAnchor.constraint(equalToConstant: circleBackgroundImageSize),
+            
             commitNumberTitle.leadingAnchor.constraint(equalTo: commitNumBackground.leadingAnchor, constant: 14),
             commitNumberTitle.topAnchor.constraint(equalTo: commitNumBackground.topAnchor, constant: 8),
             commitNumberTitle.trailingAnchor.constraint(equalTo: commitNumBackground.trailingAnchor, constant: -12),
-            commitNumberTitle.heightAnchor.constraint(equalToConstant: constantSize)
-        ]
-        let commitAuthorTitleConstraints = [
+            commitNumberTitle.heightAnchor.constraint(equalToConstant: constantSize),
+            
             commitAuthorTitle.leadingAnchor.constraint(equalTo: commitNumBackground.trailingAnchor, constant: constantSize),
             commitAuthorTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             commitAuthorTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -margins),
-            commitAuthorTitle.heightAnchor.constraint(equalToConstant: 13)
-        ]
-        let authorEmailTitleConstraints = [
+            commitAuthorTitle.heightAnchor.constraint(equalToConstant: 13),
+            
             authorEmailTitle.leadingAnchor.constraint(equalTo: commitNumBackground.trailingAnchor, constant: constantSize),
             authorEmailTitle.topAnchor.constraint(equalTo: commitAuthorTitle.bottomAnchor, constant: 2),
             authorEmailTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -margins),
-            authorEmailTitle.heightAnchor.constraint(equalToConstant: 22)
-        ]
-        let commitMessageTitleConstraints = [
+            authorEmailTitle.heightAnchor.constraint(equalToConstant: 22),
+            
             commitMessageTitle.leadingAnchor.constraint(equalTo: commitNumBackground.trailingAnchor, constant: constantSize),
             commitMessageTitle.topAnchor.constraint(equalTo: authorEmailTitle.bottomAnchor, constant: 2),
             commitMessageTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -margins),
             commitMessageTitle.heightAnchor.constraint(equalToConstant: 44)
-        ]
-        NSLayoutConstraint.activate(commitNumBackgroundConstraints)
-        NSLayoutConstraint.activate(commitNumberTitleConstraints)
-        NSLayoutConstraint.activate(commitAuthorTitleConstraints)
-        NSLayoutConstraint.activate(authorEmailTitleConstraints)
-        NSLayoutConstraint.activate(commitMessageTitleConstraints)
+        ])
     }
     
 //MARK: === Init ===
