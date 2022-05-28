@@ -8,130 +8,46 @@ import UIKit
 
 class MainViewController: UIViewController, CoordinatorBoard {
     weak var mainCoordinator : MainCoordinator?
-    
-    private var reposList = [Repo]() {
+    private var filteredRepos = [Repo]()
+    private var mainView      = MainView()
+    private var reposList     = [Repo]() {
         didSet {
             reposList.sort { $0.starsCount > $1.starsCount }
-            tableView.reloadData()
+            mainView.tableView.reloadData()
         }
     }
     
-    private var filteredRepos = [Repo]()
-    
-    //MARK: === UI Items ===
-    private let searchTitle: UILabel = {
-        let label = UILabel()
-        label.text = "Search"
-        label.numberOfLines = 0
-        label.clipsToBounds = true
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 34, weight: .bold)
-        return label
-    }()
-    
-    private let searchBar: UISearchBar = {
-        let bar = UISearchBar()
-        bar.placeholder = "Search"
-        bar.translatesAutoresizingMaskIntoConstraints = false
-        return bar
-    }()
-    
-    private let tableViewTitle: UILabel = {
-        let label = UILabel()
-        label.text = "Repositories"
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
-        return label
-    }()
-    
-    private let tableView: UITableView = {
-        let table = UITableView()
-        table.translatesAutoresizingMaskIntoConstraints = false
-        table.register(RepoTableVIewCell.self, forCellReuseIdentifier: Identifiers.repoTableViewCell)
-        return table
-    }()
-    
-    private func addSubviews() {
-        view.addSubview(searchTitle)
-        view.addSubview(searchBar)
-        view.addSubview(tableViewTitle)
-        view.addSubview(tableView)
-    }
-    
-//MARK: === Constraints ===
-    private func applyConstraints() {
-        let margins: CGFloat = 16
-        
-        let searchTitleConstraints = [
-            searchTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: margins),
-            searchTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 89),
-            searchTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -margins),
-            searchTitle.heightAnchor.constraint(equalToConstant: 41)
-        ]
-        let searchBarConstraints = [
-            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: margins),
-            searchBar.topAnchor.constraint(equalTo: searchTitle.bottomAnchor, constant: 14),
-            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -margins),
-            searchBar.heightAnchor.constraint(equalToConstant: 36)
-        ]
-        let tableViewTitleConstraints = [
-            tableViewTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: margins),
-            tableViewTitle.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 30),
-            tableViewTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -margins),
-            tableViewTitle.heightAnchor.constraint(equalToConstant: 28)
-        ]
-        let tableViewConstraints = [
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: margins),
-            tableView.topAnchor.constraint(equalTo: tableViewTitle.bottomAnchor, constant: 18),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -margins),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ]
-            NSLayoutConstraint.activate(searchTitleConstraints)
-            NSLayoutConstraint.activate(searchBarConstraints)
-            NSLayoutConstraint.activate(tableViewTitleConstraints)
-            NSLayoutConstraint.activate(tableViewConstraints)
-    }
-    
-// MARK: === Init ===
-    init() {
-        super.init(nibName: nil, bundle: nil)
-        addSubviews()
-        applyConstraints()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
 //MARK: === ViewController LifeCycle ===
+    override func loadView() {
+        view = mainView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        tableView.keyboardDismissMode = .onDrag
-        
+        getStarRepos()
         addDelegates()
-        tableView.showActivityIndicator()
         hideKeyboardWhenTappedAround()
-
+    }
+    
+    private func addDelegates() {
+        mainView.tableView.emptyDataSetSource = self
+        mainView.tableView.emptyDataSetDelegate = self
+        mainView.tableView.delegate = self
+        mainView.tableView.dataSource = self
+        mainView.searchBar.delegate = self
+    }
+    
+    private func getStarRepos() {
         APICaller.shared.fetchStarsRepos(with: Endpoints.reposUrlString) { results in
             switch results {
             case .success(let repos):
                 self.reposList = repos.items
-                self.tableView.hideActivityIndicator()
+                self.mainView.tableView.hideActivityIndicator()
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
-    }
-    
-    private func addDelegates() {
-        tableView.emptyDataSetSource = self
-        tableView.emptyDataSetDelegate = self
-        tableView.delegate = self
-        tableView.dataSource = self
-        searchBar.delegate = self
     }
 }
 
@@ -167,18 +83,8 @@ extension MainViewController: UITableViewDataSource {
 // === MARK: - DZNEmptyDataSet ===
 extension MainViewController {
     func emptyDataSet(_ scrollView: UIScrollView, didTap button: UIButton) {
-        self.tableView.showActivityIndicator()
-        //Get repos
-        APICaller.shared.fetchStarsRepos(with: Endpoints.reposUrlString) { results in
-            switch results {
-            case .success(let repos):
-                self.reposList = repos.items
-                self.tableView.hideActivityIndicator()
-                self.tableView.reloadData()
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
+        self.mainView.tableView.showActivityIndicator()
+        getStarRepos()
     }
 }
 
@@ -201,6 +107,6 @@ extension MainViewController: UISearchBarDelegate{
             })
         }
         filteredRepos.sort { $0.starsCount > $1.starsCount }
-        self.tableView.reloadData()
+        self.mainView.tableView.reloadData()
     }
 }

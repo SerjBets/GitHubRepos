@@ -9,282 +9,28 @@ import SDWebImage
 import SafariServices
 import SwiftUI
 
-class DetailViewController: UIViewController, CoordinatorBoard, SFSafariViewControllerDelegate {
-    weak var mainCoordinator : MainCoordinator?
+class DetailViewController: UIViewController, CoordinatorBoard, SFSafariViewControllerDelegate, DetailViewDelegate {
     
+    weak var mainCoordinator : MainCoordinator?
+    private var detailView = DetailView()
     var repoItem: Repo!
     var commitsList = [Commit]() {
         didSet {
-            updateUI()
-            tableView.reloadData()
+            detailView.updateUI(with: repoItem, commit: commitsList[0])
+            self.detailView.tableView.reloadData()
         }
     }
-    
-//MARK: === UI Items ===
-    private let headerImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "noImage")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.masksToBounds = true
-        imageView.contentMode = .scaleAspectFill
-        return imageView
-    }()
-    
-    private let repoByTitle: UILabel = {
-        let label = UILabel()
-        label.text = "REPO BY"
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        label.layer.opacity = 0.6
-        return label
-    }()
-    
-    private let repoAuthorTitle: UILabel = {
-        let label = UILabel()
-        label.text = "Repo Auther Name"
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 28, weight: .bold)
-        return label
-    }()
-    
-    private let starsCountImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "starIcon2")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.masksToBounds = true
-        imageView.contentMode = .scaleAspectFill
-        return imageView
-    }()
-    
-    private let numberStarsTitle: UILabel = {
-        let label = UILabel()
-        label.text = "8877"
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        label.layer.opacity = 0.5
-        return label
-    }()
 
-    private let repoTitle: UILabel = {
-        let label = UILabel()
-        label.text = "Repo Title"
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        return label
-    }()
-    
-    private let viewOnlineButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = customColors.btnBackground.rawValue
-        button.layer.cornerRadius = 17
-        button.setTitle("VIEW ONlINE".uppercased(), for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        button.setTitleColor(customColors.btnTitle.rawValue, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-   }()
-    
-    private let commitHistoryTitle: UILabel = {
-        let label = UILabel()
-        label.text = "Commit History"
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
-        return label
-    }()
-    
-    private let tableView: UITableView = {
-        let table = UITableView()
-        table.translatesAutoresizingMaskIntoConstraints = false
-        table.register(CommitTableVIewCell.self, forCellReuseIdentifier: Identifiers.commitTableViewCell)
-        table.isScrollEnabled = false
-        table.allowsSelection = false
-        return table
-    }()
-    
-    @objc private let shareButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.backgroundColor = UIColor(named: "btnBackground")
-        button.layer.cornerRadius = 10
-        button.setImage(UIImage(named: "shareIcon"), for: .normal)
-        button.setTitle(" Share Repo", for: .normal)
-        button.setTitleColor(UIColor(named: "btnTitle"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-   }()
-    
-//MARK: === Constraints ===
-    private func applyConstraints() {
-        let constantSize: CGFloat = 20
-        let margins: CGFloat = 16
-        
-        let headerImageConstraints = [
-            headerImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            headerImage.topAnchor.constraint(equalTo: view.topAnchor),
-            headerImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            headerImage.heightAnchor.constraint(equalToConstant: 263)
-        ]
-        let repoByTitleConstraints = [
-            repoByTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: constantSize),
-            repoByTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 159),
-            repoByTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: constantSize),
-            repoByTitle.heightAnchor.constraint(equalToConstant: constantSize)
-        ]
-        let repoAuthorTitleConstraints = [
-            repoAuthorTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: constantSize),
-            repoAuthorTitle.topAnchor.constraint(equalTo: repoByTitle.bottomAnchor, constant: 4),
-            repoAuthorTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: constantSize),
-            repoAuthorTitle.heightAnchor.constraint(equalToConstant: constantSize)
-        ]
-        let starsCountImageConstraints = [
-            starsCountImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: constantSize),
-            starsCountImage.topAnchor.constraint(equalTo: repoAuthorTitle.bottomAnchor, constant: 9),
-            starsCountImage.widthAnchor.constraint(equalToConstant: 13),
-            starsCountImage.heightAnchor.constraint(equalToConstant: 13)
-        ]
-        let numberStarsTitleConstraints = [
-            numberStarsTitle.leadingAnchor.constraint(equalTo: starsCountImage.trailingAnchor, constant: 5),
-            numberStarsTitle.topAnchor.constraint(equalTo: repoAuthorTitle.bottomAnchor, constant: 6),
-            numberStarsTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: constantSize),
-            numberStarsTitle.heightAnchor.constraint(equalToConstant: 18)
-        ]
-        let repoTitleConstraints = [
-            repoTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: constantSize),
-            repoTitle.topAnchor.constraint(equalTo: headerImage.bottomAnchor, constant: 21),
-            repoTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -150),
-            repoTitle.heightAnchor.constraint(equalToConstant: 22)
-        ]
-        let viewOnlineButtonConstraints = [
-            viewOnlineButton.topAnchor.constraint(equalTo: headerImage.bottomAnchor, constant: 17),
-            viewOnlineButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -margins),
-            viewOnlineButton.widthAnchor.constraint(equalToConstant: 120),
-            viewOnlineButton.heightAnchor.constraint(equalToConstant: 30)
-        ]
-        let commitHistoryTitleConstraints = [
-            commitHistoryTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: margins),
-            commitHistoryTitle.topAnchor.constraint(equalTo: repoTitle.bottomAnchor, constant: 39),
-            commitHistoryTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: constantSize),
-            commitHistoryTitle.heightAnchor.constraint(equalToConstant: 28)
-        ]
-        let tableViewConstraints = [
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: commitHistoryTitle.bottomAnchor, constant: 10),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.heightAnchor.constraint(equalToConstant: 333)
-        ]
-        let shareButtonConstraints = [
-            shareButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: margins),
-            shareButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -margins),
-            shareButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 24),
-            shareButton.heightAnchor.constraint(equalToConstant: 50)
-        ]
-        NSLayoutConstraint.activate(headerImageConstraints)
-        NSLayoutConstraint.activate(repoByTitleConstraints)
-        NSLayoutConstraint.activate(repoAuthorTitleConstraints)
-        NSLayoutConstraint.activate(starsCountImageConstraints)
-        NSLayoutConstraint.activate(numberStarsTitleConstraints)
-        NSLayoutConstraint.activate(repoTitleConstraints)
-        NSLayoutConstraint.activate(viewOnlineButtonConstraints)
-        NSLayoutConstraint.activate(commitHistoryTitleConstraints)
-        NSLayoutConstraint.activate(tableViewConstraints)
-        NSLayoutConstraint.activate(shareButtonConstraints)
-    }
-    
-    private func addSubviews() {
-        view.addSubview(headerImage)
-        view.addSubview(repoByTitle)
-        view.addSubview(repoAuthorTitle)
-        view.addSubview(starsCountImage)
-        view.addSubview(numberStarsTitle)
-        view.addSubview(repoTitle)
-        view.addSubview(viewOnlineButton)
-        view.addSubview(commitHistoryTitle)
-        view.addSubview(tableView)
-        view.addSubview(shareButton)
-    }
-    
-    private func makeBackButton() -> UIButton {
-        let backButtonImage = UIImage(systemName: "chevron.backward")?.withRenderingMode(.alwaysTemplate)
-        let backButton = UIButton(type: .custom)
-        backButton.tintColor = .black
-        backButton.setImage(backButtonImage, for: .normal)
-        backButton.setTitle("Back", for: .normal)
-        backButton.setTitleColor(.black, for: .normal)
-        backButton.addTarget(self, action: #selector(self.backButtonPressed), for: .touchUpInside)
-        return backButton
-    }
-    
 //MARK: === Buttons Actions ===
-    
-    @objc private func backButtonPressed() {
-        //dismiss(animated: true, completion: nil)
+    internal func backButtonTapped() {
         mainCoordinator?.configureRootViewController()
     }
     
-    @objc private func shareButtonTapped() {
-        prepareForShare()
-    }
-    
-    @objc private func viewOnlineButtontapped() {
+    internal func viewOnlineButtonTapped() {
         showLinksClicked()
     }
     
-// MARK: === Init ===
-    init() {
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    init(model: Repo) {
-        super.init(nibName: nil, bundle: nil)
-        self.repoItem = model
-        addSubviews()
-        applyConstraints()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-//MARK: === ViewController LifeCycle ===
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.emptyDataSetSource = self
-        tableView.emptyDataSetDelegate = self
-        tableView.showActivityIndicator()
-        getCommits()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: makeBackButton())
-        shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
-        viewOnlineButton.addTarget(self, action: #selector(viewOnlineButtontapped), for: .touchUpInside)
-    }
-    
-    private func getCommits() {
-        APICaller.shared.fetchCommits(with: Endpoints.commitsUrlString) { results in
-            switch results {
-            case .success(let commits):
-                self.commitsList = commits
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    private func updateUI() {
-        let avatarUrl = repoItem.owner.avatarUrl
-        headerImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
-        headerImage.sd_setImage(with: avatarUrl)
-        repoTitle.text = repoItem.name
-        repoAuthorTitle.text = commitsList[0].commit.author.name
-        numberStarsTitle.text = "\(repoItem.starsCount)"
-    }
-
-    private func prepareForShare() {
+    internal func shareButtonTapped() {
         let nameToShare = String(describing: repoItem.name)
         let urlToShare = repoItem.htmlUrl
         let shareItems = [nameToShare, urlToShare] as [Any]
@@ -303,6 +49,50 @@ class DetailViewController: UIViewController, CoordinatorBoard, SFSafariViewCont
                 self.dismiss(animated: true, completion: nil)
             }
         }
+    }
+    
+// MARK: === Init ===
+    init(model: Repo) {
+        super.init(nibName: nil, bundle: nil)
+        self.repoItem = model
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+//MARK: === ViewController LifeCycle ===
+    override func loadView() {
+        view = detailView
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+        addDelegates()
+        getCommits()
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: detailView.backbutton)
+    }
+    
+    private func getCommits() {
+        APICaller.shared.fetchCommits(with: Endpoints.commitsUrlString) { results in
+            switch results {
+            case .success(let commits):
+                self.commitsList = commits
+                self.detailView.tableView.hideActivityIndicator()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    private func addDelegates() {
+        detailView.tableView.dataSource = self
+        detailView.tableView.delegate = self
+        detailView.tableView.emptyDataSetSource = self
+        detailView.tableView.emptyDataSetDelegate = self
+        detailView.delegate = self
     }
 }
 
@@ -348,16 +138,7 @@ extension DetailViewController {
 extension DetailViewController {
 
     func emptyDataSet(_ scrollView: UIScrollView, didTap button: UIButton) {
-        self.tableView.showActivityIndicator()
-        APICaller.shared.fetchCommits(with: Endpoints.commitsUrlString) { results in
-            switch results {
-            case .success(let commits):
-                self.commitsList = commits
-                self.tableView.reloadData()
-                self.tableView.hideActivityIndicator()
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
+        self.detailView.tableView.showActivityIndicator()
+        getCommits()
     }
 }
